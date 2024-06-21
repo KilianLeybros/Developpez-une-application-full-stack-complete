@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.data.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,12 @@ public class User {
 
     @Column(name="password")
     private String password;
+
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "user")
     private Set<Post> posts;
