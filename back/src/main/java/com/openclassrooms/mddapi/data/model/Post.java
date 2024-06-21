@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "post")
@@ -30,5 +31,8 @@ public class Post {
     @ManyToOne
     @JoinColumn(name="author_id", nullable = false)
     private User author;
+
+    @OneToMany(mappedBy = "post")
+    private Set<Comment> comments;
 
 }
