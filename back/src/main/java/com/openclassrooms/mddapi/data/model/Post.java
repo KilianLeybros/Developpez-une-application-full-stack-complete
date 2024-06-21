@@ -23,4 +23,12 @@ public class Post {
     @Column(name="created_at")
     private LocalDateTime createdAt;
 
+    @ManyToOne
+    @JoinColumn(name="topic_id", nullable = false)
+    private Topic topic;
+
+    @ManyToOne
+    @JoinColumn(name="author_id", nullable = false)
+    private User author;
+
 }

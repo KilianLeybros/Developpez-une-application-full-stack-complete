@@ -3,6 +3,8 @@ package com.openclassrooms.mddapi.data.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "user")
 @Data
@@ -20,4 +22,7 @@ public class User {
 
     @Column(name="password")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Post> posts;
 }
