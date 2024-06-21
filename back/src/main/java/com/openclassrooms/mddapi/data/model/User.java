@@ -28,4 +28,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments;
+
+    @ManyToMany
+    @JoinTable(
+            name = "subscription",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name="topic_id")
+    )
+    Set<Topic> subscribedTopics;
 }

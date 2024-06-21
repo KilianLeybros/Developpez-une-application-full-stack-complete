@@ -24,4 +24,11 @@ public class Topic {
     @OneToMany(mappedBy = "topic")
     private Set<Post> posts;
 
+    @ManyToMany
+    @JoinTable(
+            name = "subscription",
+            joinColumns = @JoinColumn(name="topic_id"),
+            inverseJoinColumns = @JoinColumn(name="user_id")
+    )
+    private Set<User> users;
 }
