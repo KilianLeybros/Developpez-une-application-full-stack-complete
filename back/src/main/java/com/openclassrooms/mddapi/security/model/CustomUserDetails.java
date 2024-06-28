@@ -9,8 +9,8 @@ import java.util.Collection;
 public class CustomUserDetails extends User implements UserDetails {
 
     public CustomUserDetails(User user){
-        this.setEmail(user.getEmail());
-        this.setPassword(user.getPassword());
+        this.setUsername(user.getEmail())
+            .setPassword(user.getPassword());
     }
 
     @Override
