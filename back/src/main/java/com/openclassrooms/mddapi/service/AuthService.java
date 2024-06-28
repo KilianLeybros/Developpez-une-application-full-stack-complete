@@ -1,0 +1,81 @@
+package com.openclassrooms.mddapi.service;
+
+import com.openclassrooms.mddapi.controller.exception.EmailAlreadyExistException;
+import com.openclassrooms.mddapi.data.dto.LoginInput;
+import com.openclassrooms.mddapi.data.dto.RegisterInput;
+import com.openclassrooms.mddapi.data.mapper.UserMapper;
+import com.openclassrooms.mddapi.data.model.User;
+import com.openclassrooms.mddapi.data.repository.UserRepository;
+import com.openclassrooms.mddapi.security.service.JwtService;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AuthService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @Value("${jwt.cookieDuration}")
+    private int cookieExpiration;
+
+
+
+    public User register(RegisterInput registerInput, HttpServletResponse response){
+        userRepository.findByEmail(registerInput.email()).ifPresent((user) -> {
+            throw new EmailAlreadyExistException("Un utilisateur avec l'adresse email " + registerInput.email() + " existe déja");
+        });
+        String encodedPassword = passwordEncoder.encode(registerInput.password());
+        User user = userRepository.save(UserMapper.fromRegisterInput(registerInput, encodedPassword));
+        authenticate(registerInput.email(), registerInput.password(), response);
+        return user;
+    }
+
+    public User login(LoginInput loginInput, HttpServletResponse response){
+        authenticate(loginInput.email(), loginInput.password(), response);
+        return userRepository.findByEmail(loginInput.email()).orElseThrow(() ->
+                new EntityNotFoundException("Aucun compte correspond à cette adresse mail")
+        );
+    }
+
+    private void authenticate(String email, String password,HttpServletResponse response){
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+        if(authentication.isAuthenticated()) {
+            String token = jwtService.generateToken(email);
+            // set token to cookie header
+            ResponseCookie cookie = ResponseCookie.from("token", token)
+                    .httpOnly(true)
+                    .secure(false)
+                    .path("/")
+                    .maxAge(cookieExpiration)
+                    .build();
+            response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+        }
+    }
+
+    public User getAuthenticatedUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (User) authentication.getPrincipal();
+    }
+
+
+}
