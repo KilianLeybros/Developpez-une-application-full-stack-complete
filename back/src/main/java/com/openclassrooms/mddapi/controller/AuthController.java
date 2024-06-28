@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.data.dto.RegisterInput;
 import com.openclassrooms.mddapi.data.model.User;
 import com.openclassrooms.mddapi.service.AuthService;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterInput registerInput, HttpServletResponse response){
+    public ResponseEntity<AuthResponse> register(@RequestBody @Valid RegisterInput registerInput, HttpServletResponse response){
         User registeredUser = authService.register(registerInput, response);
         return ResponseEntity.ok(
                 new AuthResponse(registeredUser.getId(),
@@ -30,7 +31,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginInput loginInput, HttpServletResponse response){
+    public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginInput loginInput, HttpServletResponse response){
         User loggedInUser = authService.login(loginInput, response);
         return ResponseEntity.ok(
                 new AuthResponse(loggedInUser.getId(),
@@ -42,7 +43,7 @@ public class AuthController {
 
     @GetMapping("/authenticated")
     public ResponseEntity<AuthResponse> getCurrentUser(){
-        User user = authService.getAuthenticatedUser();
+        User user = authService.getCurrentUser();
         return ResponseEntity.ok(
                 new AuthResponse(user.getId(),
                     user.getUsername(),
