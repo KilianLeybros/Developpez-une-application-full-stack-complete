@@ -1,4 +1,11 @@
 package com.openclassrooms.mddapi.data.dto;
 
-public record LoginInput(String email, String password) {
+import jakarta.validation.constraints.NotBlank;
+
+public record LoginInput(
+        @NotBlank(message = "Veuillez entrer vos identifiants")
+        String email,
+        @NotBlank(message = "Veuillez entrer vos identifiants")
+        String password
+) {
 }

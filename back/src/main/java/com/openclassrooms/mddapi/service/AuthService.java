@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.data.dto.RegisterInput;
 import com.openclassrooms.mddapi.data.mapper.UserMapper;
 import com.openclassrooms.mddapi.data.model.User;
 import com.openclassrooms.mddapi.data.repository.UserRepository;
+import com.openclassrooms.mddapi.security.model.CustomUserDetails;
 import com.openclassrooms.mddapi.security.service.JwtService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +44,7 @@ public class AuthService {
 
     public User register(RegisterInput registerInput, HttpServletResponse response){
         userRepository.findByEmail(registerInput.email()).ifPresent((user) -> {
-            throw new EmailAlreadyExistException("Un utilisateur avec l'adresse email " + registerInput.email() + " existe déja");
+            throw new EmailAlreadyExistException("Un compte avec l'adresse email " + registerInput.email() + " existe déja");
         });
         String encodedPassword = passwordEncoder.encode(registerInput.password());
         User user = userRepository.save(UserMapper.fromRegisterInput(registerInput, encodedPassword));
@@ -53,7 +55,7 @@ public class AuthService {
     public User login(LoginInput loginInput, HttpServletResponse response){
         authenticate(loginInput.email(), loginInput.password(), response);
         return userRepository.findByEmail(loginInput.email()).orElseThrow(() ->
-                new EntityNotFoundException("Aucun compte correspond à cette adresse mail")
+                new EntityNotFoundException("Mauvais email/mot de passe")
         );
     }
 
@@ -72,9 +74,15 @@ public class AuthService {
         }
     }
 
-    public User getAuthenticatedUser(){
+    private UserDetails getAuthenticatedUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (User) authentication.getPrincipal();
+        return (CustomUserDetails) authentication.getPrincipal();
+    }
+
+    public User getCurrentUser(){
+        return userRepository.findByEmail(getAuthenticatedUser().getUsername()).orElseThrow(
+                () -> new EntityNotFoundException("l'utilisateur n'a pas été trouvé")
+        );
     }
 
 
