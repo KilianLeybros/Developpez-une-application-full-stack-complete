@@ -21,7 +21,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody @Valid RegisterInput registerInput, HttpServletResponse response){
-        User registeredUser = authService.register(registerInput, response);
+        User registeredUser = authService.register(registerInput);
+        authService.authenticate(registeredUser.getEmail(), registeredUser.getPassword(), response);
         return ResponseEntity.ok(
                 new AuthResponse(registeredUser.getId(),
                         registeredUser.getUsername(),
@@ -32,7 +33,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginInput loginInput, HttpServletResponse response){
-        User loggedInUser = authService.login(loginInput, response);
+        User loggedInUser = authService.login(loginInput);
+        authService.authenticate(loggedInUser.getEmail(), loggedInUser.getPassword(), response);
         return ResponseEntity.ok(
                 new AuthResponse(loggedInUser.getId(),
                         loggedInUser.getUsername(),

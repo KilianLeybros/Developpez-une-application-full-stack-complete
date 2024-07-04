@@ -42,24 +42,22 @@ public class AuthService {
 
 
 
-    public User register(RegisterInput registerInput, HttpServletResponse response){
+    public User register(RegisterInput registerInput){
         userRepository.findByEmail(registerInput.email()).ifPresent((user) -> {
             throw new EmailAlreadyExistException("Un compte avec l'adresse email " + registerInput.email() + " existe déja");
         });
         String encodedPassword = passwordEncoder.encode(registerInput.password());
-        User user = userRepository.save(UserMapper.fromRegisterInput(registerInput, encodedPassword));
-        authenticate(registerInput.email(), registerInput.password(), response);
-        return user;
+        return userRepository.save(UserMapper.fromRegisterInput(registerInput, encodedPassword));
     }
 
-    public User login(LoginInput loginInput, HttpServletResponse response){
-        authenticate(loginInput.email(), loginInput.password(), response);
+    public User login(LoginInput loginInput){
         return userRepository.findByEmail(loginInput.email()).orElseThrow(() ->
                 new EntityNotFoundException("Mauvais email/mot de passe")
         );
     }
 
-    private void authenticate(String email, String password,HttpServletResponse response){
+
+    public void authenticate(String email, String password,HttpServletResponse response){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         if(authentication.isAuthenticated()) {
             String token = jwtService.generateToken(email);
