@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "_user")
 @Accessors(chain = true)
 @Data
 public class User {

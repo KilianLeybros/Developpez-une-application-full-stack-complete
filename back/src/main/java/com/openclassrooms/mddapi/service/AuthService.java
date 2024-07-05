@@ -61,7 +61,7 @@ public class AuthService {
     }
 
 
-    public void authenticate(String email, String password,HttpServletResponse response){
+    public void authenticate(String email, String password, HttpServletResponse response){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         if(authentication.isAuthenticated()) {
             String token = jwtService.generateToken(email);
@@ -79,7 +79,7 @@ public class AuthService {
 
     private UserDetails getAuthenticatedUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (CustomUserDetails) authentication.getPrincipal();
+        return (UserDetails) authentication.getPrincipal();
     }
 
     public User getCurrentUser(){
