@@ -2,17 +2,19 @@ package com.openclassrooms.mddapi.data.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
+@Accessors(chain = true)
 @Data
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="email")
@@ -30,7 +32,7 @@ public class User {
     @Column(name="updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "author")
     private Set<Post> posts;
 
     @OneToMany(mappedBy = "user")
