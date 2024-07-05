@@ -63,9 +63,37 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<configuration>
+					<excludes>
+						<exclude>com/openclassrooms/mddapi/data/**</exclude>
+						<exclude>com/openclassrooms/mddapi/security/**</exclude>
+						<exclude>com/openclassrooms/mddapi/*.class</exclude>
+						<exclude>com/openclassrooms/mddapi/controller/exception/*.class</exclude>
+						<exclude>com/openclassrooms/mddapi/controller/handler/*.class</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
+
+
+
+
 		</plugins>
 	</build>
 
