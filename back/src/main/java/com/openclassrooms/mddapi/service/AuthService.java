@@ -25,11 +25,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+
+
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -41,6 +41,10 @@ public class AuthService {
     private int cookieExpiration;
 
 
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder){
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public User register(RegisterInput registerInput){
         userRepository.findByEmail(registerInput.email()).ifPresent((user) -> {
