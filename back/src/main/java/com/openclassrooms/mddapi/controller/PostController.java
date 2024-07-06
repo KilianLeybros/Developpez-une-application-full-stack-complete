@@ -18,13 +18,13 @@ public class PostController {
     private IPostService postService;
 
     @GetMapping
-    public ResponseEntity<List<PostResponse>> getAllPost(@RequestParam(value = "direction") Direction direction){
-        return ResponseEntity.ok(postService.getAllPost(direction));
+    public ResponseEntity<List<PostResponse>> getAllPosts(@RequestParam(value = "direction") Direction direction){
+        return ResponseEntity.ok(postService.findAllPosts(direction));
     }
 
     @GetMapping("{id}")
     public ResponseEntity<PostDetailsResponse> getPost(@PathVariable("id") Long id){
-        return ResponseEntity.ok(postService.getPost(id));
+        return ResponseEntity.ok(postService.findPost(id));
     }
 
     @PostMapping

@@ -34,12 +34,12 @@ public class PostService implements IPostService {
     @Autowired
     private TopicRepository topicRepository;
 
-    public List<PostResponse> getAllPost(Direction direction){
+    public List<PostResponse> findAllPosts(Direction direction){
         User user = authService.getCurrentUser();
         return PostMapper.toPostResponseList(postRepository.findSubscribedTopicPostsOrderByDate(user.getId(),direction.name()));
     }
     @Transactional
-    public PostDetailsResponse getPost(Long id){
+    public PostDetailsResponse findPost(Long id){
         Post post = postRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("L'article demandé n'existe pas"));
         return PostMapper.toPostDetailsResponse(post);
     }

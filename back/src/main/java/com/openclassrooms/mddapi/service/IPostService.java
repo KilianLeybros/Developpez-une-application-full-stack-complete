@@ -7,9 +7,9 @@ import com.openclassrooms.mddapi.util.enums.Direction;
 import java.util.List;
 
 public interface IPostService {
-    PostDetailsResponse getPost(Long id);
+    PostDetailsResponse findPost(Long id);
 
-    List<PostResponse> getAllPost(Direction direction);
+    List<PostResponse> findAllPosts(Direction direction);
 
     PostResponse addPost(PostInput postInput);
 
