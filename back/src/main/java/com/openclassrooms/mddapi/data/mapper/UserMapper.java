@@ -3,7 +3,6 @@ package com.openclassrooms.mddapi.data.mapper;
 import com.openclassrooms.mddapi.data.dto.RegisterInput;
 import com.openclassrooms.mddapi.data.model.User;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 
