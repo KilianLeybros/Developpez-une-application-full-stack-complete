@@ -1,35 +1,40 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.data.dto.post.*;
+import com.openclassrooms.mddapi.service.IPostService;
+import com.openclassrooms.mddapi.util.enums.Direction;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/post")
 public class PostController {
 
+    @Autowired
+    private IPostService postService;
+
     @GetMapping
-    public ResponseEntity<?> getAllPost(){
-        return ResponseEntity.ok("ok");
+    public ResponseEntity<List<PostResponse>> getAllPost(@RequestParam(value = "direction") Direction direction){
+        return ResponseEntity.ok(postService.getAllPost(direction));
     }
 
-
     @GetMapping("{id}")
-    public ResponseEntity<?> getPost(@PathVariable("id") String id){
-        return ResponseEntity.ok("ok");
+    public ResponseEntity<PostDetailsResponse> getPost(@PathVariable("id") Long id){
+        return ResponseEntity.ok(postService.getPost(id));
     }
 
     @PostMapping
-    public ResponseEntity<?> createPost(){
-        return ResponseEntity.ok("ok");
+    public ResponseEntity<?> createPost(@RequestBody @Valid PostInput postInput){
+        return ResponseEntity.ok(postService.addPost(postInput));
     }
 
-    @PatchMapping
-    public ResponseEntity<?> updatePost(){
-        return ResponseEntity.ok("ok");
-    }
 
     @PostMapping("{id}/comment")
-    public ResponseEntity<?> commentPost(@PathVariable("id") String id){
-        return ResponseEntity.ok("ok");
+    public ResponseEntity<?> commentPost(@PathVariable("id") Long id, @RequestBody @Valid PostCommentInput postCommentInput){
+        return ResponseEntity.ok(postService.comment(id, postCommentInput));
     }
 }
