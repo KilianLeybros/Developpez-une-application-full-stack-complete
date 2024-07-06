@@ -9,7 +9,7 @@ import com.openclassrooms.mddapi.data.dto.LoginInput;
 import com.openclassrooms.mddapi.data.dto.RegisterInput;
 import com.openclassrooms.mddapi.data.model.User;
 import com.openclassrooms.mddapi.security.JwtFilter;
-import com.openclassrooms.mddapi.service.AuthService;
+import com.openclassrooms.mddapi.service.IAuthService;
 import jakarta.persistence.EntityNotFoundException;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
@@ -47,7 +47,7 @@ public class AuthControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    AuthService authService;
+    IAuthService authService;
 
     ObjectMapper objectMapper = new ObjectMapper()
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
@@ -138,7 +138,7 @@ public class AuthControllerTest {
         String content = objectWriter.writeValueAsString(loginInput);
 
         //When
-        when(authService.login(loginInput)).thenThrow(new EntityNotFoundException("Mauvais email/password"));
+        when(authService.login(loginInput)).thenThrow(new EntityNotFoundException("Cette adresse email ne correspond à aucun compte."));
 
         //Then
         mockMvc.perform(post("/api/auth/login")
