@@ -7,6 +7,7 @@ import com.openclassrooms.mddapi.data.dto.RegisterInput;
 import com.openclassrooms.mddapi.data.mapper.UserMapper;
 import com.openclassrooms.mddapi.data.model.User;
 import com.openclassrooms.mddapi.data.repository.UserRepository;
+import com.openclassrooms.mddapi.service.impl.AuthService;
 import jakarta.persistence.EntityNotFoundException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +36,7 @@ public class AuthServiceTest {
 
     private PasswordEncoder passwordEncoder = NoOpPasswordEncoder.getInstance();
 
-    private AuthService authService;
+    private IAuthService authService;
 
     private List<User> userList;
 

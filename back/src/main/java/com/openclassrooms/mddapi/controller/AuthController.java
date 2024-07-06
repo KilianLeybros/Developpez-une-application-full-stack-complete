@@ -4,7 +4,7 @@ import com.openclassrooms.mddapi.data.dto.AuthResponse;
 import com.openclassrooms.mddapi.data.dto.LoginInput;
 import com.openclassrooms.mddapi.data.dto.RegisterInput;
 import com.openclassrooms.mddapi.data.model.User;
-import com.openclassrooms.mddapi.service.AuthService;
+import com.openclassrooms.mddapi.service.IAuthService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private AuthService authService;
+    private IAuthService authService;
 
 
     @PostMapping("/register")

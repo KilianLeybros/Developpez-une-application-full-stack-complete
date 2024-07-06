@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.service;
+package com.openclassrooms.mddapi.service.impl;
 
 import com.openclassrooms.mddapi.controller.exception.EmailAlreadyExistException;
 import com.openclassrooms.mddapi.data.dto.LoginInput;
@@ -6,8 +6,8 @@ import com.openclassrooms.mddapi.data.dto.RegisterInput;
 import com.openclassrooms.mddapi.data.mapper.UserMapper;
 import com.openclassrooms.mddapi.data.model.User;
 import com.openclassrooms.mddapi.data.repository.UserRepository;
-import com.openclassrooms.mddapi.security.model.CustomUserDetails;
 import com.openclassrooms.mddapi.security.service.JwtService;
+import com.openclassrooms.mddapi.service.IAuthService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthService {
+public class AuthService implements IAuthService {
 
 
     private final UserRepository userRepository;
@@ -56,7 +56,7 @@ public class AuthService {
 
     public User login(LoginInput loginInput){
         return userRepository.findByEmail(loginInput.email()).orElseThrow(() ->
-                new EntityNotFoundException("Mauvais email/mot de passe")
+                new EntityNotFoundException("Cette adresse email ne correspond à aucun compte.")
         );
     }
 

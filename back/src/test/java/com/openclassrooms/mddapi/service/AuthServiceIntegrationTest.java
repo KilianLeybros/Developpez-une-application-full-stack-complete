@@ -21,7 +21,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 public class AuthServiceIntegrationTest {
 
     @Autowired
-    private AuthService authService;
+    private IAuthService authService;
 
 
     @Test
