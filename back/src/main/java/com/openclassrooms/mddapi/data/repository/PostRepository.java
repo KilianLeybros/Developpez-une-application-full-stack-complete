@@ -13,11 +13,16 @@ import java.util.List;
 public interface PostRepository extends CrudRepository<Post, Long> {
 
     @Query(value= """
-            SELECT * FROM post
-            JOIN topic on post.topic_id = topic.id
-            JOIN subscription on topic.id = subscription.topic_id
-            JOIN _user on subscription.user_id = _user.id
-            WHERE _user.id = :userId
-            ORDER_BY post.created_at :direction""", nativeQuery = true)
-    List<Post> findSubscribedTopicPostsOrderByDate(@Param("userId") Long userId, @Param("direction") Direction direction);
+            SELECT p.* FROM post p
+            JOIN topic t on p.topic_id = t.id
+            JOIN subscription s on t.id = s.topic_id
+            JOIN _user u on s.user_id = u.id
+            WHERE u.id = :userId
+            ORDER BY
+            CASE WHEN :direction = "ASC" THEN p.created_at
+            END asc,
+            CASE WHEN :direction = "DESC" THEN p.created_at
+            END desc""", nativeQuery = true)
+    List<Post> findSubscribedTopicPostsOrderByDate(@Param("userId") Long userId, @Param("direction") String direction);
+
 }
