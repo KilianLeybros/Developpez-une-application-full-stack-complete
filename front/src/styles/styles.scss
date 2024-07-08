@@ -1,4 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #7550ec;
+  --small: 800px;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+img {
+  width: 100%;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  display: block;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.outline-btn {
+  padding: 8px 25px 8px 25px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-weight: 500;
+  &:hover {
+    border-color: var(--primary);
+  }
+}
