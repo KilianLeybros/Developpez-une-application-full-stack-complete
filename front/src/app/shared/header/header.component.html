@@ -1,0 +1,17 @@
+<nav class="d-flex flex-row align-items-center">
+  <a class="brand">
+    <img src="/assets/logo_p6.png" alt="logo" />
+  </a>
+  <div class="link-container" [attr.aria-expanded]="menuToggled">
+    <div class="nav-link">
+      <ul>
+        <li>Articles</li>
+        <li>Thèmes</li>
+      </ul>
+      <a class="profil"><mat-icon>account_circle</mat-icon></a>
+    </div>
+  </div>
+  <a (click)="menuToggled = !menuToggled" class="toggle-btn"
+    ><mat-icon>menu</mat-icon></a
+  >
+</nav>
