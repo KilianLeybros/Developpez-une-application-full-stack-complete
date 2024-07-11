@@ -1,7 +1,3 @@
-.home-page-container {
-  margin-top: 200px;
-}
-
 .btn-container {
   display: flex;
   justify-content: space-evenly;
@@ -15,10 +11,16 @@
     align-items: center;
     gap: 25px;
   }
+  .home-page-container {
+    margin-top: 150px;
+  }
 }
 @media only screen and (min-width: 768px) {
   .btn-container {
     flex-direction: row;
+  }
+  .home-page-container {
+    margin-top: 200px;
   }
 }
 
