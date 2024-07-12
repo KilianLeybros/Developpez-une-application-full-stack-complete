@@ -1,0 +1,14 @@
+nav {
+  border-bottom: 1px solid black;
+  padding: 6px 20px 6px 20px;
+  .brand {
+    width: 140px;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  nav {
+    display: none;
+  }
+}
