@@ -1,0 +1,24 @@
+h2 {
+  font-weight: 500;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.brand {
+  width: 225px;
+  align-items: center;
+  margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .brand {
+    display: none;
+  }
+  .title-container {
+    flex-direction: row;
+  }
+}
