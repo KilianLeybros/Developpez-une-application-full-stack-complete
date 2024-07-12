@@ -11,6 +11,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { AuthTitleComponent } from './pages/auth/auth-title/auth-title.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FakeHeaderComponent } from './shared/header/fake-header/fake-header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FakeHeaderComponent } from './shared/header/fake-header/fake-header.com
     AppRoutingModule,
     MatIconModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

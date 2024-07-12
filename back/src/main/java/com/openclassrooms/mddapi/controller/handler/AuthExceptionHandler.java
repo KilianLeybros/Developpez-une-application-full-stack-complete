@@ -5,6 +5,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -36,6 +37,12 @@ public class AuthExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String handleException(AuthenticationException exception){
         return "Mauvais email/mot de passe";
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String handleException(BadCredentialsException exception){
+        return "Mot de passe incorrect";
     }
 
     @ExceptionHandler(EmailAlreadyExistException.class)

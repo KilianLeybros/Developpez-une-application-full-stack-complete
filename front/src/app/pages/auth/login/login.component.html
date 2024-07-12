@@ -11,7 +11,7 @@
       <form [formGroup]="loginForm" (ngSubmit)="submit()">
         <div class="d-flex flex-column form-group">
           <label>Email ou nom d'utilisateur</label>
-          <input formControlName="username" type="text" />
+          <input formControlName="email" type="text" />
         </div>
         <div class="d-flex flex-column form-group">
           <label>Mot de passe</label>
@@ -20,11 +20,12 @@
         <div class="validation-summary">
           <ul>
             <li
-              *ngIf="
-                (password!.errors || username!.errors) && loginForm.touched
-              "
+              *ngIf="(password!.errors || email!.errors) && loginForm.touched"
             >
               Veuillez rentrer vos identifiants
+            </li>
+            <li *ngIf="error">
+              {{ error }}
             </li>
           </ul>
         </div>
