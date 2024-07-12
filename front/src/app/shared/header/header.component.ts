@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,8 @@ export class HeaderComponent {
   private onResize(event: Event) {
     const target = event.target as Window;
     if (target.innerWidth > 768 && this.menuToggled) {
+      this.menuToggled = false;
+    } else {
       this.menuToggled = false;
     }
   }
