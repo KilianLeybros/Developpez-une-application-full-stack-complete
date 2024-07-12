@@ -1,0 +1,37 @@
+<app-fake-header></app-fake-header>
+<div class="container m-auto">
+  <div class="d-flex flex-column">
+    <div class="backward">
+      <a routerLink="">
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+    </div>
+    <app-auth-title content="Se connecter"></app-auth-title>
+    <div class="d-flex justify-content-center mt-30">
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="d-flex flex-column form-group">
+          <label>Email ou nom d'utilisateur</label>
+          <input formControlName="username" type="text" />
+        </div>
+        <div class="d-flex flex-column form-group">
+          <label>Mot de passe</label>
+          <input formControlName="password" type="password" />
+        </div>
+        <div class="validation-summary">
+          <ul>
+            <li
+              *ngIf="
+                (password!.errors || username!.errors) && loginForm.touched
+              "
+            >
+              Veuillez rentrer vos identifiants
+            </li>
+          </ul>
+        </div>
+        <div class="d-flex justify-content-center actions">
+          <button class="btn btn-primary">Se connecter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
