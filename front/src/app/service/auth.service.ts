@@ -9,17 +9,24 @@ import { User } from '../interfaces/user.interface';
 export class AuthService {
   private path: String = 'api/auth';
 
-  public $user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
+  public user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
     null
   );
 
   constructor(private http: HttpClient) {}
 
-  login(loginInput: { email: string; password: string }): Observable<User> {
-    return this.http.post<any>(`${this.path}/login`, loginInput).pipe(
+  public fetchCurrentUser(): Observable<User> {
+    return this.http.get<User>(`${this.path}/authenticated`);
+  }
+
+  public login(loginInput: {
+    email: string;
+    password: string;
+  }): Observable<User> {
+    return this.http.post<User>(`${this.path}/login`, loginInput).pipe(
       tap((user: User) => {
         if (user) {
-          this.$user.next(user);
+          this.user$.next(user);
         }
       })
     );

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './service/auth.service';
+import { Observable } from 'rxjs';
+import { User } from './interfaces/user.interface';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'front';
+  public user$: Observable<User | null> = this.authService.user$.asObservable();
+
+  constructor(private authService: AuthService) {}
 }

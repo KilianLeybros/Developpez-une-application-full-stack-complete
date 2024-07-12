@@ -1,4 +1,4 @@
-@if(false){
+@if(user$ | async){
 <!--<header style="height: 200px"><nav></nav></header>-->
 <app-header></app-header>
 <div class="container m-auto">
@@ -6,7 +6,7 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-} @if(true){
+} @else{
 
 <!--<app-header></app-header>-->
 <!--<app-header></app-header>-->
