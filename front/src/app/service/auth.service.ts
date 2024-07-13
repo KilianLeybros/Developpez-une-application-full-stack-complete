@@ -54,4 +54,19 @@ export class AuthService {
       })
     );
   }
+
+  public register(registerInput: {
+    username: string;
+    email: string;
+    password: string;
+  }): Observable<User> {
+    return this.http.post<User>(`${this.path}/register`, registerInput).pipe(
+      tap((user: User) => {
+        if (user) {
+          this.user$.next(user);
+          this.isLoggedin$.next(true);
+        }
+      })
+    );
+  }
 }
