@@ -1,15 +1,6 @@
-@if(isLoggedin){
-<!--<header style="height: 200px"><nav></nav></header>-->
-<app-header [isLoggedin]="isLoggedin"></app-header>
+<app-header [isLoggedin]="isLoggedin$ | async"></app-header>
 <div class="container m-auto">
   <div class="d-flex flex-column">
     <router-outlet></router-outlet>
   </div>
 </div>
-} @else{
-
-<!--<app-header></app-header>-->
-<!--<app-header></app-header>-->
-<router-outlet></router-outlet>
-
-}

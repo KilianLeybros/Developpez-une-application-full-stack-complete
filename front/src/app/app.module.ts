@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-//import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { BrowserModule } from '@angular/platform-browser';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,8 +8,8 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthTitleComponent } from './pages/auth/auth-title/auth-title.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FakeHeaderComponent } from './shared/header/fake-header/fake-header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './pages/post/post.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     HeaderComponent,
-    FakeHeaderComponent,
     AuthTitleComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,12 @@
-<nav class="d-flex flex-row align-items-center">
+@if(!ishomePage){
+<nav
+  [class.nav-not-loggedin]="!isLoggedin"
+  class="d-flex flex-row align-items-center"
+>
   <a routerLink="" class="brand">
     <img src="/assets/logo_p6.png" alt="logo" />
   </a>
+  @if(isLoggedin){
   <div class="link-container" [attr.aria-expanded]="menuToggled">
     <div class="nav-link">
       <ul>
@@ -14,4 +19,6 @@
   <a (click)="menuToggled = !menuToggled" class="toggle-btn"
     ><mat-icon>menu</mat-icon></a
   >
+  }
 </nav>
+}
