@@ -1,12 +1,6 @@
-import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormsModule,
-  FormControl,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -14,7 +8,7 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   public error?: string;
   public loginForm: FormGroup = this.fb.group(
     {
@@ -30,16 +24,17 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.loginForm.get('password');
   }
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-    console.log(this.loginForm);
-  }
   public submit() {
     this.loginForm.markAsTouched();
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.getRawValue()).subscribe({
-        next: () => console.log('logged'),
+        next: () => this.router.navigateByUrl('/post'),
         error: (err) => {
           this.error = err.error || 'Mauvais email/mot de passe';
         },
