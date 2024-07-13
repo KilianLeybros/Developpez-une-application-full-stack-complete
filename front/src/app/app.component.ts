@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './service/auth.service';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { User } from './interfaces/user.interface';
 
 @Component({
@@ -8,8 +8,19 @@ import { User } from './interfaces/user.interface';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  public user$: Observable<User | null> = this.authService.user$.asObservable();
+export class AppComponent implements OnInit {
+  private isLoggedin$: Observable<boolean | null> =
+    this.authService.isLoggedin$.asObservable();
+
+  public isLoggedin: boolean | null = null;
 
   constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.isLoggedin$
+      .pipe(first())
+      .subscribe((value: boolean | null) => {
+        this.isLoggedin = value;
+      });
+  }
 }

@@ -1,6 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  of,
+  ReplaySubject,
+  tap,
+} from 'rxjs';
 import { User } from '../interfaces/user.interface';
 
 @Injectable({
@@ -9,14 +16,29 @@ import { User } from '../interfaces/user.interface';
 export class AuthService {
   private path: String = 'api/auth';
 
+  public isLoggedin$: ReplaySubject<boolean> = new ReplaySubject(1);
   public user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
     null
   );
 
   constructor(private http: HttpClient) {}
 
-  public fetchCurrentUser(): Observable<User> {
-    return this.http.get<User>(`${this.path}/authenticated`);
+  public fetchCurrentUser(): Observable<User | null> {
+    return this.http.get<User | null>(`${this.path}/authenticated`).pipe(
+      tap((user: User | null) => {
+        this.user$.next(user);
+        if (user) {
+          this.isLoggedin$.next(true);
+        } else {
+          this.isLoggedin$.next(false);
+        }
+      }),
+      catchError((_) => {
+        this.user$.next(null);
+        this.isLoggedin$.next(false);
+        return of(null);
+      })
+    );
   }
 
   public login(loginInput: {
@@ -27,6 +49,7 @@ export class AuthService {
       tap((user: User) => {
         if (user) {
           this.user$.next(user);
+          this.isLoggedin$.next(true);
         }
       })
     );

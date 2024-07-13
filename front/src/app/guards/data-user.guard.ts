@@ -12,17 +12,10 @@ export const dataUserGuard: CanActivateFn = () => {
       if (user) return of(true);
       else {
         return authService.fetchCurrentUser().pipe(
-          tap((user: User) => {
-            console.log(user);
-            authService.user$.next(user);
-          }),
           map(() => true)
         );
       }
     }),
-    catchError((_) => {
-      authService.user$.next(null);
-      return of(true);
-    })
+    
   );
 };

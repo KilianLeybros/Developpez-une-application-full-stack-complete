@@ -1,6 +1,6 @@
-@if(user$ | async){
+@if(isLoggedin){
 <!--<header style="height: 200px"><nav></nav></header>-->
-<app-header></app-header>
+<app-header [isLoggedin]="isLoggedin"></app-header>
 <div class="container m-auto">
   <div class="d-flex flex-column">
     <router-outlet></router-outlet>
