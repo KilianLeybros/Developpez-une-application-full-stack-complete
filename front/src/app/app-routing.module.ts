@@ -3,17 +3,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { dataUserGuard } from './guards/data-user.guard';
+import { authGuard } from './guards/auth.guard';
+import { PostComponent } from './pages/post/post.component';
+import { loggedinGuard } from './guards/loggedin.guard';
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
 const routes: Routes = [
   {
     path: '',
-    canActivate: [dataUserGuard],
+    canActivate: [dataUserGuard, loggedinGuard],
     component: HomeComponent,
     pathMatch: 'full',
   },
-  { path: 'login', canActivate: [dataUserGuard], component: LoginComponent },
+  {
+    path: 'login',
+    canActivate: [dataUserGuard, loggedinGuard],
+    component: LoginComponent,
+  },
+  {
+    path: 'post',
+    canActivate: [dataUserGuard, authGuard],
+    component: PostComponent,
+  },
 ];
 
 @NgModule({
