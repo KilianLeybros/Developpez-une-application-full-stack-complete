@@ -10,12 +10,14 @@ import { AuthTitleComponent } from './pages/auth/auth-title/auth-title.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './pages/post/post.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
     HeaderComponent,
     AuthTitleComponent,
     PostComponent,

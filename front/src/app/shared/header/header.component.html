@@ -7,7 +7,7 @@
     <img src="/assets/logo_p6.png" alt="logo" />
   </a>
   @if(isLoggedin){
-  <div class="link-container" [attr.aria-expanded]="menuToggled">
+  <div class="link-container">
     <div class="nav-link">
       <ul>
         <li>Articles</li>
@@ -19,6 +19,15 @@
   <a (click)="menuToggled = !menuToggled" class="toggle-btn"
     ><mat-icon>menu</mat-icon></a
   >
+  <aside [attr.aria-expanded]="menuToggled">
+    <div class="nav-link mobile">
+      <ul>
+        <li>Articles</li>
+        <li>Thèmes</li>
+      </ul>
+      <a class="profil"><mat-icon>account_circle</mat-icon></a>
+    </div>
+  </aside>
   }
 </nav>
 }
