@@ -58,6 +58,9 @@ ul {
 .mt-30 {
   margin-top: 30px;
 }
+.p-30 {
+  padding: 30px;
+}
 
 .d-flex {
   display: flex;
@@ -99,8 +102,7 @@ ul {
   padding: 7px 13px;
   cursor: pointer;
   font-weight: 500;
-  font-size: 15px;
-
+  font-size: 14px;
   border-radius: 5px;
 }
 
@@ -141,4 +143,26 @@ ul {
     padding: 8px;
   }
   margin-bottom: 20px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 50px;
+  row-gap: 30px;
+  .card {
+    width: auto;
+    background-color: var(--light-gray);
+    border-radius: 15px;
+    padding: 13px 17px;
+    .card-header {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

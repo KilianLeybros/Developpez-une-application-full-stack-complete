@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './pages/post/post.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { PostListComponent } from './pages/post/post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
     HeaderComponent,
     AuthTitleComponent,
     PostComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,
