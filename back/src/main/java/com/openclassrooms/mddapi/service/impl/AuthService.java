@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthService implements IAuthService {
@@ -79,13 +82,20 @@ public class AuthService implements IAuthService {
 
     private UserDetails getAuthenticatedUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication.getClass().equals(AnonymousAuthenticationToken.class)){
+            return null;
+        }
         return (UserDetails) authentication.getPrincipal();
     }
 
     public User getCurrentUser(){
-        return userRepository.findByEmail(getAuthenticatedUser().getUsername()).orElseThrow(
-                () -> new EntityNotFoundException("l'utilisateur n'a pas été trouvé")
-        );
+        UserDetails authenticatedUser = getAuthenticatedUser();
+        if(authenticatedUser != null){
+            return userRepository.findByEmail(getAuthenticatedUser().getUsername()).orElseThrow(() ->
+                new EntityNotFoundException("l'utilisateur n'a pas été trouvé")
+            );
+        }
+        return null;
     }
 
 

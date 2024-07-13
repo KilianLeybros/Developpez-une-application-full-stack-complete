@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -98,6 +101,16 @@ public class AuthServiceIntegrationTest {
         assertThatThrownBy(() -> {
             authService.getCurrentUser();
         }).isInstanceOf(EntityNotFoundException.class);
+    }
+
+    @Test
+    @WithAnonymousUser
+    public void shouldReturnNull_WhenNoUserAuthenticated(){
+        //When
+        User user = authService.getCurrentUser();
+
+        //Then
+        org.junit.jupiter.api.Assertions.assertNull(user);
     }
 
     @Test

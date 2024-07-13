@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './service/auth.service';
+import { first, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'front';
+  public isLoggedin$: Observable<boolean> =
+    this.authService.isLoggedin$.asObservable();
+
+  constructor(private authService: AuthService) {}
 }
