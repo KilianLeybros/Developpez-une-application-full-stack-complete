@@ -6,6 +6,7 @@ import { dataUserGuard } from './guards/data-user.guard';
 import { authGuard } from './guards/auth.guard';
 import { PostComponent } from './pages/post/post.component';
 import { loggedinGuard } from './guards/loggedin.guard';
+import { RegisterComponent } from './pages/auth/register/register.component';
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: 'login',
     canActivate: [dataUserGuard, loggedinGuard],
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    canActivate: [dataUserGuard, loggedinGuard],
+    component: RegisterComponent,
   },
   {
     path: 'post',
