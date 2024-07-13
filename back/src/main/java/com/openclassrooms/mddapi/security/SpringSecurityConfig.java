@@ -35,7 +35,6 @@ public class SpringSecurityConfig {
         return http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/api/auth/**").permitAll();
-                    auth.requestMatchers("/api/auth/authenticated").authenticated();
                     auth.requestMatchers("api/**").authenticated();
                 })
                 //Configuration de exception handling dans le cas ou aucun utilisateur est connecté, renvoie 401 au lieu de 403

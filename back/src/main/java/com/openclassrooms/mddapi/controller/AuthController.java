@@ -46,12 +46,15 @@ public class AuthController {
     @GetMapping("/authenticated")
     public ResponseEntity<AuthResponse> getCurrentUser(){
         User user = authService.getCurrentUser();
-        return ResponseEntity.ok(
-                new AuthResponse(user.getId(),
-                    user.getUsername(),
-                    user.getEmail(),
-                    user.getPassword())
-        );
+        if(user != null){
+            return ResponseEntity.ok(
+                    new AuthResponse(user.getId(),
+                            user.getUsername(),
+                            user.getEmail(),
+                            user.getPassword())
+            );
+        }
+        return null;
     }
 
 }
