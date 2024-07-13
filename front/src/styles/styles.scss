@@ -131,3 +131,14 @@ ul {
     }
   }
 }
+
+.form-group {
+  max-width: 500px;
+  label {
+    font-weight: 500;
+  }
+  input {
+    padding: 8px;
+  }
+  margin-bottom: 20px;
+}
