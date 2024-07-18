@@ -8,9 +8,8 @@ export const loggedinGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   return authService.isLoggedin$.pipe(
     tap((isLoggedin: boolean) => {
-      if (!isLoggedin) {
-      } else {
-        router.navigateByUrl('/post');
+      if (isLoggedin) {
+        router.navigateByUrl('/posts');
       }
     }),
     map(() => true)

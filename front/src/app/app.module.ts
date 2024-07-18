@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -11,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './pages/post/post.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { PostListComponent } from './pages/post/post-list/post-list.component';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,16 @@ import { RegisterComponent } from './pages/auth/register/register.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
+    LoaderComponent,
     AuthTitleComponent,
     PostComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
+    MatProgressBarModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],

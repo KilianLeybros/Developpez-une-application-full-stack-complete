@@ -1,5 +1,63 @@
+//Material
+
+@use "@angular/material" as mat;
+
+@include mat.core();
+$my-color: (
+  50: #eeeafd,
+  100: #d6cbf9,
+  200: #baa8f6,
+  300: #9e85f2,
+  400: #8a6aef,
+  500: #7550ec,
+  600: #6d49ea,
+  700: #6240e7,
+  800: #5837e4,
+  900: #4527df,
+  A100: #ffffff,
+  A200: #ebe8ff,
+  A400: #c0b5ff,
+  A700: #aa9cff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$primary: mat.define-palette($my-color);
+$accent: mat.define-palette(mat.$deep-purple-palette);
+$warn: mat.define-palette(mat.$light-green-palette);
+
+$light: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($light);
+
+//
+
 :root {
   --primary: #7550ec;
+  --darker: #5f33e9;
+  --darker2: #4016c8;
   --gray: #d9d9d9;
   --light-gray: #f5f5f5;
   --small: 800px;
@@ -58,6 +116,9 @@ ul {
 .mt-30 {
   margin-top: 30px;
 }
+.p-30 {
+  padding: 30px;
+}
 
 .d-flex {
   display: flex;
@@ -99,8 +160,7 @@ ul {
   padding: 7px 13px;
   cursor: pointer;
   font-weight: 500;
-  font-size: 15px;
-
+  font-size: 14px;
   border-radius: 5px;
 }
 
@@ -109,7 +169,7 @@ ul {
   background-color: var(--primary);
   color: white;
   &:hover {
-    background-color: #6748cd;
+    background-color: var(--darker);
   }
 }
 
@@ -141,4 +201,35 @@ ul {
     padding: 8px;
   }
   margin-bottom: 20px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 50px;
+  row-gap: 30px;
+  position: relative;
+  .card {
+    width: auto;
+    background-color: var(--light-gray);
+    border-radius: 15px;
+    padding: 13px 17px;
+    .card-header {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+app-loader {
+  position: absolute;
+}
+
+div[loading="true"] {
+  opacity: 0.4;
 }

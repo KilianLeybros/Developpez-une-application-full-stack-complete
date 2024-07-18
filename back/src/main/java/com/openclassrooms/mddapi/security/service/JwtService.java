@@ -72,7 +72,7 @@ public class JwtService {
                 .claims(extraClaims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + (long) jwtExpiration * 100000))
+                .expiration(new Date(System.currentTimeMillis() + (long) jwtExpiration * 3600))
                 .signWith(privateKey)
                 .compact();
     }

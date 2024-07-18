@@ -15,7 +15,6 @@ import { User } from '../interfaces/user.interface';
 })
 export class AuthService {
   private path: String = 'api/auth';
-
   public isLoggedin$: ReplaySubject<boolean> = new ReplaySubject(1);
   public user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
     null

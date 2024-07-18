@@ -1,0 +1,22 @@
+<div class="card-container" [attr.loading]="isLoading">
+  @if(isLoading){
+  <app-loader></app-loader>
+  } @if(posts){ @for (post of posts; track post.id) {
+  <div class="card">
+    <div class="card-header">
+      <h3>{{ post.title }}</h3>
+    </div>
+    <div>
+      <div class="post-info">
+        <span>{{ post.date | date : "dd/MM/yyyy" }}</span>
+        <span>{{ post.author }}</span>
+      </div>
+      <p>
+        {{ post.description }}
+      </p>
+    </div>
+  </div>
+  } } @else if(!posts && !isLoading) {
+  <p>Aucun article pour le moment..</p>
+  }
+</div>
