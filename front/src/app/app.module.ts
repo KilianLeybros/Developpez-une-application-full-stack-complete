@@ -14,6 +14,7 @@ import { PostComponent } from './pages/post/post.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { PostListComponent } from './pages/post/post-list/post-list.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { PostDetailsComponent } from './pages/post/post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
     AuthTitleComponent,
     PostComponent,
     PostListComponent,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -116,6 +116,29 @@ ul {
 .mt-30 {
   margin-top: 30px;
 }
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.ml-30 {
+  margin-left: 30px;
+}
+
+.px-30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.py-15 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.pb-30 {
+  padding-bottom: 30px;
+}
+
 .p-30 {
   padding: 30px;
 }
@@ -180,15 +203,16 @@ ul {
 
 .backward {
   position: absolute;
-  left: 25px;
+  left: 30px;
   margin-top: 15px;
-  a {
-    cursor: pointer;
-    mat-icon {
-      height: 30px;
-      width: 30px;
-      font-size: 30px;
-    }
+}
+
+a.back {
+  cursor: pointer;
+  mat-icon {
+    height: 30px;
+    width: 30px;
+    font-size: 30px;
   }
 }
 
