@@ -10,10 +10,19 @@
   <div class="link-container">
     <div class="nav-link">
       <ul>
-        <li>Articles</li>
-        <li>Thèmes</li>
+        <li
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="postsRouteOptions"
+          [queryParams]="{ direction: 'ASC' }"
+        >
+          Articles
+        </li>
+        <li routerLinkActive="active">Thèmes</li>
       </ul>
-      <a class="profil"><mat-icon>account_circle</mat-icon></a>
+      <a class="profil" routerLinkActive="active"
+        ><mat-icon>account_circle</mat-icon></a
+      >
     </div>
   </div>
   <a (click)="menuToggled = !menuToggled" class="toggle-btn"
@@ -22,7 +31,14 @@
   <aside [attr.aria-expanded]="menuToggled">
     <div class="nav-link mobile">
       <ul>
-        <li>Articles</li>
+        <li
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="postsRouteOptions"
+          [queryParams]="{ direction: 'ASC' }"
+        >
+          Articles
+        </li>
         <li>Thèmes</li>
       </ul>
       <a class="profil"><mat-icon>account_circle</mat-icon></a>

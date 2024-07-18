@@ -1,4 +1,5 @@
 nav {
+  height: 98px;
   border-bottom: 1px solid black;
   padding: 6px 20px 6px 20px;
   .brand {
@@ -33,12 +34,15 @@ nav {
     display: flex;
     margin: 0 10px 0 10px;
     li {
+      &.active {
+        color: var(--primary);
+      }
       cursor: pointer;
       padding: 10px 20px;
 
       font-size: 20px;
       &:hover {
-        color: var(--primary);
+        color: var(--darker2);
       }
     }
   }
@@ -69,6 +73,7 @@ nav {
 }
 aside {
   display: none;
+  z-index: 1;
 }
 aside[aria-expanded="true"] {
   display: block;

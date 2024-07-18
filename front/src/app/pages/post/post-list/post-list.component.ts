@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Post } from 'src/app/interfaces/post.interface';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrl: './post-list.component.scss',
 })
-export class PostListComponent {}
+export class PostListComponent {
+  @Input() public posts: Post[] | null = null;
+  @Input() public isLoading!: boolean;
+}

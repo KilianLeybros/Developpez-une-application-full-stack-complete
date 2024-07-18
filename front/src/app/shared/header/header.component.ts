@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import {
   ActivatedRoute,
+  IsActiveMatchOptions,
   NavigationEnd,
   Router,
   RouterStateSnapshot,
@@ -27,11 +28,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private subscriptions = new Subscription();
 
+  public postsRouteOptions: IsActiveMatchOptions = {
+    fragment: 'ignored',
+    matrixParams: 'ignored',
+    paths: 'exact',
+    queryParams: 'ignored',
+  };
+
   @HostListener('click', ['$event'])
   private onClick(event: Event) {
     const target = event.target as HTMLElement;
     if (target.getAttribute('aria-expanded')) {
-      console.log('a');
       this.menuToggled = false;
     }
   }
@@ -52,7 +59,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         filter((event) => event instanceof NavigationEnd),
         map(() => this.router.routerState.snapshot),
         tap((route: RouterStateSnapshot) => {
-          console.log(route.url);
           this.ishomePage = route.url == '/';
         })
       )

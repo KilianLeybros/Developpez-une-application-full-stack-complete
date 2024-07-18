@@ -29,9 +29,9 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'post',
+    path: 'posts',
     canActivate: [dataUserGuard, authGuard],
-    component: PostListComponent,
+    component: PostComponent,
   },
 ];
 
