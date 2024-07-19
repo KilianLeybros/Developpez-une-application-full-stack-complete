@@ -11,7 +11,8 @@ import { Direction } from 'src/app/utils/direction.enum';
   styleUrl: './post.component.scss',
 })
 export class PostComponent implements OnInit {
-  public posts$: Observable<Post[]> = this.postService.posts$.asObservable();
+  public posts$: Observable<Post[] | null> =
+    this.postService.posts$.asObservable();
   public direction: Direction = Direction.DESC;
   public isLoading: boolean = true;
   constructor(

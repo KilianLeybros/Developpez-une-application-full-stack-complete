@@ -1,0 +1,23 @@
+<div class="card-container" [attr.loading]="isLoading">
+  @if(isLoading){
+  <app-loader></app-loader>
+  } @if(topics){ @for (topic of topics; track topic.id) {
+  <div class="card">
+    <div class="card-header">
+      <h3>{{ topic.title }}</h3>
+    </div>
+    <div>
+      <p>
+        {{ topic.description }}
+      </p>
+    </div>
+    <div class="d-flex justify-content-center mt-15">
+      <button class="btn btn-primary" (click)="updateSubscrition(topic.id)">
+        {{ topic.isSubscribed ? "Se désabonner" : "S'abonner" }}
+      </button>
+    </div>
+  </div>
+  } } @else if(!topics && !isLoading) {
+  <p>Aucun thèmes pour le moment..</p>
+  }
+</div>

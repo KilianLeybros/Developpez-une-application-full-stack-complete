@@ -17,6 +17,8 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { PostDetailsComponent } from './pages/post/post-details/post-details.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
+import { TopicComponent } from './pages/topic/topic.component';
+import { TopicListComponent } from './shared/topic-list/topic-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { PostFormComponent } from './pages/post/post-form/post-form.component';
     PostDetailsComponent,
     NotFoundComponent,
     PostFormComponent,
+    TopicComponent,
+    TopicListComponent,
   ],
   imports: [
     BrowserModule,

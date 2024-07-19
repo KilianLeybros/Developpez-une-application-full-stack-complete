@@ -274,13 +274,13 @@ a.back {
 .card-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 50px;
-  row-gap: 30px;
+  column-gap: 7px;
+  row-gap: 12px;
   position: relative;
   .card {
     width: auto;
     background-color: var(--light-gray);
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 13px 17px;
     .card-header {
       margin-bottom: 25px;
