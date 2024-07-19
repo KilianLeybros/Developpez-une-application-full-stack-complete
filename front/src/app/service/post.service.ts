@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, delay, tap } from 'rxjs';
 import { Post } from '../interfaces/post.interface';
 import { Direction } from '../utils/direction.enum';
+import { PostDetails } from '../interfaces/post-details.interface';
+import { Comment } from '../interfaces/comment.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +30,13 @@ export class PostService {
         this.posts$.next(posts);
       })
     );
+  }
+
+  public getPost(id: number) {
+    return this.http.get<PostDetails>(`${this.apiPath}/${id}`);
+  }
+
+  public comment(id: number, message: string) {
+    return this.http.post<Comment>(`${this.apiPath}/${id}/comment`, message);
   }
 }

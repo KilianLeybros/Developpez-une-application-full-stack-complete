@@ -1,0 +1,57 @@
+<div class="d-flex flex-column px-30 py-15">
+  <h1 class="mb-30">{{ post?.title }}</h1>
+  <div class="d-flex flex-row post-info">
+    <span>{{ post?.date | date : "dd/MM/yyyy" }}</span>
+    <span>{{ post?.author }}</span>
+    <span>{{ post?.topic }}</span>
+  </div>
+  <div class="my-25">
+    <p>
+      {{ post?.description }}
+    </p>
+  </div>
+  <hr />
+  <div class="my-25">
+    <h3>Commentaires</h3>
+    <form
+      [formGroup]="commentForm"
+      (ngSubmit)="submit()"
+      class="my-15 d-flex flex-column"
+    >
+      <textarea
+        formControlName="message"
+        placeholder="Écrivez votre commentaire ici"
+        rows="2"
+      ></textarea>
+      <div class="d-flex justify-content-end">
+        <button class="btn-primary btn">
+          Envoyer<mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </form>
+    <div
+      class="validation-summary"
+      *ngIf="message?.errors && commentForm.touched"
+    >
+      <ul>
+        <li *ngIf="message!.hasError('required')">
+          Veuillez écrire un message
+        </li>
+        <li *ngIf="message!.hasError('maxlength')">
+          Message trop long, pas plus de 255 caractères
+        </li>
+      </ul>
+    </div>
+    <div class="py-15 d-flex flex-column">
+      @for (comment of post?.comments; track comment.id){
+
+      <div class="mb-30">
+        <p class="username">{{ comment.username }}</p>
+        <p class="comment">
+          {{ comment.message }}
+        </p>
+      </div>
+      }
+    </div>
+  </div>
+</div>

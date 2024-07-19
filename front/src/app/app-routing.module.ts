@@ -8,6 +8,8 @@ import { PostComponent } from './pages/post/post.component';
 import { loggedinGuard } from './guards/loggedin.guard';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { PostListComponent } from './pages/post/post-list/post-list.component';
+import { PostDetailsComponent } from './pages/post/post-details/post-details.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
@@ -33,6 +35,14 @@ const routes: Routes = [
     canActivate: [dataUserGuard, authGuard],
     component: PostComponent,
   },
+  {
+    path: 'posts/:id',
+    pathMatch: 'full',
+    canActivate: [dataUserGuard, authGuard],
+    component: PostDetailsComponent,
+  },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({

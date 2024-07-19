@@ -34,7 +34,7 @@ export class LoginComponent {
     this.loginForm.markAsTouched();
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.getRawValue()).subscribe({
-        next: () => this.router.navigateByUrl('/post'),
+        next: () => this.router.navigateByUrl('/posts'),
         error: (err) => {
           this.error = err.error || 'Mauvais email/mot de passe';
         },
