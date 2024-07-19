@@ -39,6 +39,7 @@ public class Post {
     private User author;
 
     @OneToMany(mappedBy = "post")
+    @OrderBy(value="createdAt desc")
     private Set<Comment> comments;
 
 }

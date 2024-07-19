@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.data.dto.comment.CommentResponse;
 import com.openclassrooms.mddapi.data.dto.post.*;
 import com.openclassrooms.mddapi.service.IPostService;
 import com.openclassrooms.mddapi.util.enums.Direction;
@@ -34,7 +35,7 @@ public class PostController {
 
 
     @PostMapping("{id}/comment")
-    public ResponseEntity<?> commentPost(@PathVariable("id") Long id, @RequestBody @Valid PostCommentInput postCommentInput){
+    public ResponseEntity<CommentResponse> commentPost(@PathVariable("id") Long id, @RequestBody @Valid PostCommentInput postCommentInput){
         return ResponseEntity.ok(postService.comment(id, postCommentInput));
     }
 }
