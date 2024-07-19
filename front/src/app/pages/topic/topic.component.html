@@ -1,0 +1,7 @@
+<div class="d-flex flex-column p-30">
+  <app-topic-list
+    (action)="subscribe($event)"
+    [isLoading]="false"
+    [topics]="topics$ | async"
+  ></app-topic-list>
+</div>

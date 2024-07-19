@@ -2,13 +2,13 @@ package com.openclassrooms.mddapi.data.model;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.Set;
 
 @Entity
 @Table(name="topic")
-@Data
+@Getter
 public class Topic {
 
     @Id

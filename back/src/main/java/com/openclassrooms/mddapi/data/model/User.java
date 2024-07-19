@@ -1,16 +1,19 @@
 package com.openclassrooms.mddapi.data.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "_user")
 @Accessors(chain = true)
-@Data
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -44,5 +47,5 @@ public class User {
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="topic_id")
     )
-    Set<Topic> subscribedTopics;
+    private Set<Topic> subscribedTopics;
 }

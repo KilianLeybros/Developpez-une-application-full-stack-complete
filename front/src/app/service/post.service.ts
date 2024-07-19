@@ -10,9 +10,9 @@ import { Comment } from '../interfaces/comment.interface';
   providedIn: 'root',
 })
 export class PostService {
-  public posts$: BehaviorSubject<any | null> = new BehaviorSubject<any | null>(
-    null
-  );
+  public posts$: BehaviorSubject<Post[] | null> = new BehaviorSubject<
+    Post[] | null
+  >(null);
 
   private apiPath: string = 'api/post';
 
