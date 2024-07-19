@@ -126,6 +126,10 @@ ul {
   margin-top: 15px;
 }
 
+.mt-5 {
+  margin-top: 5px;
+}
+
 .ml-30 {
   margin-left: 30px;
 }
@@ -236,11 +240,32 @@ a.back {
 }
 
 .form-group {
+  &.purple {
+    input,
+    textarea,
+    select {
+      border-color: var(--darker2);
+      outline-color: var(--darker2);
+    }
+  }
   max-width: 500px;
   label {
     font-weight: 500;
   }
   input {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 8px;
+  }
+  textarea {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 8px;
+    resize: none;
+  }
+  select {
+    border: 1px solid;
+    border-radius: 3px;
     padding: 8px;
   }
   margin-bottom: 20px;

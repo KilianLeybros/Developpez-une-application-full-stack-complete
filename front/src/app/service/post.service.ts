@@ -39,4 +39,8 @@ export class PostService {
   public comment(id: number, message: string) {
     return this.http.post<Comment>(`${this.apiPath}/${id}/comment`, message);
   }
+
+  public addPost(post: { topic: number; title: string; description: string }) {
+    return this.http.post<Post>(this.apiPath, post);
+  }
 }

@@ -29,7 +29,7 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createPost(@RequestBody @Valid PostInput postInput){
+    public ResponseEntity<PostResponse> createPost(@RequestBody @Valid PostInput postInput){
         return ResponseEntity.ok(postService.addPost(postInput));
     }
 
