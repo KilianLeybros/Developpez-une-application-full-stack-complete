@@ -1,20 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './service/auth.service';
-import {
-  filter,
-  first,
-  map,
-  Observable,
-  PartialObserver,
-  Subject,
-  takeUntil,
-} from 'rxjs';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterEvent,
-} from '@angular/router';
+import { filter, Observable, Subject, takeUntil } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',

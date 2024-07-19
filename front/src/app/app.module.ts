@@ -16,6 +16,7 @@ import { PostListComponent } from './pages/post/post-list/post-list.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { PostDetailsComponent } from './pages/post/post-details/post-details.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { PostFormComponent } from './pages/post/post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     PostListComponent,
     PostDetailsComponent,
     NotFoundComponent,
+    PostFormComponent,
   ],
   imports: [
     BrowserModule,
