@@ -48,12 +48,16 @@ export class RegisterComponent {
   ) {}
 
   public submit() {
+    this.error = undefined;
     this.registerForm.markAsTouched();
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.getRawValue()).subscribe({
         next: () => this.router.navigateByUrl('/posts'),
         error: (err) => {
-          this.error = err.error || 'Mauvais email/mot de passe';
+          this.error =
+            err.error && typeof err.error === 'string'
+              ? err.error
+              : 'Mauvais email/mot de passe';
         },
       });
     }

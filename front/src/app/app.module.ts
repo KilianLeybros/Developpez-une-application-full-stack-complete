@@ -19,6 +19,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
 import { TopicComponent } from './pages/topic/topic.component';
 import { TopicListComponent } from './shared/topic-list/topic-list.component';
+import { AccountComponent } from './pages/account/account.component';
+import { AccountFormComponent } from './pages/account/account-form/account-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { TopicListComponent } from './shared/topic-list/topic-list.component';
     PostFormComponent,
     TopicComponent,
     TopicListComponent,
+    AccountComponent,
+    AccountFormComponent,
   ],
   imports: [
     BrowserModule,

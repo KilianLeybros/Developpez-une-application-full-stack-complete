@@ -31,12 +31,16 @@ export class LoginComponent {
   ) {}
 
   public submit() {
+    this.error = undefined;
     this.loginForm.markAsTouched();
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.getRawValue()).subscribe({
         next: () => this.router.navigateByUrl('/posts'),
         error: (err) => {
-          this.error = err.error || 'Mauvais email/mot de passe';
+          this.error =
+            err.error && typeof err.error === 'string'
+              ? err.error
+              : 'Mauvais email/mot de passe';
         },
       });
     }

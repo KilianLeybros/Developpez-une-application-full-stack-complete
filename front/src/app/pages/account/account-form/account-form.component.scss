@@ -1,0 +1,15 @@
+form {
+  max-width: 281px;
+
+  margin: 30px auto 0px auto;
+}
+
+.logout {
+  margin-top: 7px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #a40f0f;
+  &:hover {
+    color: #860d0d;
+  }
+}

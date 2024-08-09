@@ -7,11 +7,11 @@ import { authGuard } from './guards/auth.guard';
 import { PostComponent } from './pages/post/post.component';
 import { loggedinGuard } from './guards/loggedin.guard';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { PostListComponent } from './pages/post/post-list/post-list.component';
 import { PostDetailsComponent } from './pages/post/post-details/post-details.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
 import { TopicComponent } from './pages/topic/topic.component';
+import { AccountComponent } from './pages/account/account.component';
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes
@@ -53,6 +53,11 @@ const routes: Routes = [
     path: 'topics',
     canActivate: [dataUserGuard, authGuard],
     component: TopicComponent,
+  },
+  {
+    path: 'account',
+    canActivate: [dataUserGuard, authGuard],
+    component: AccountComponent,
   },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/' },
