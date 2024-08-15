@@ -46,17 +46,14 @@ export class PostFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.topicService
-      .getSubscribedTopics()
-      .subscribe((topics: SubscribedTopic[]) => {
-        this.topicList$?.next(topics);
-      });
+    this.topicService.fetchTopics().subscribe((topics: SubscribedTopic[]) => {
+      this.topicList$?.next(topics);
+    });
   }
 
   public submit() {
     this.postForm.markAsTouched();
     if (this.postForm.valid) {
-      console.log(this.postForm.markAsTouched());
       this.postService.addPost(this.postForm.getRawValue()).subscribe({
         next: (post: Post) => {
           this.router.navigateByUrl('posts');

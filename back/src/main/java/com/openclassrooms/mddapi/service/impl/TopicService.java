@@ -31,10 +31,10 @@ public class TopicService implements ITopicService {
         return TopicMapper.toListTopicResponse(topicRepository.findAll(), user);
     }
 
-    public List<SubscribedTopic> findSubscribedTopics(){
+   /* public List<SubscribedTopic> findSubscribedTopics(){
         User user = authService.getCurrentUser();
         return TopicMapper.toListSubscribedTopic(topicRepository.findByUsers(Set.of(user)));
-    }
+    }*/
 
     @Transactional
     public TopicResponse subscribe(Long id){
