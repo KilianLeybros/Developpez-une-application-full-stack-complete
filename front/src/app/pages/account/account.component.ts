@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Topic } from 'src/app/interfaces/topic.interface';
 import { User } from 'src/app/interfaces/user.interface';
@@ -13,7 +14,8 @@ import { TopicService } from 'src/app/service/topic.service';
 export class AccountComponent implements OnInit {
   constructor(
     private authService: AuthService,
-    private topicService: TopicService
+    private topicService: TopicService,
+    private router: Router
   ) {}
 
   public isLoaded: boolean = false;
@@ -29,7 +31,11 @@ export class AccountComponent implements OnInit {
     this.topicService.subscribe(id);
   }
 
-  logout() {}
+  public logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigateByUrl('');
+    });
+  }
 
   public unsubscribe(id: number) {
     this.topicService.unsubscribe(id).subscribe();
