@@ -182,6 +182,10 @@ ul {
   align-items: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .space-around {
   justify-content: space-around;
 }
@@ -278,7 +282,9 @@ a.back {
   row-gap: 12px;
   position: relative;
   .card {
-    width: auto;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    width: 545px;
     background-color: var(--light-gray);
     border-radius: 10px;
     padding: 13px 17px;
@@ -291,6 +297,9 @@ a.back {
 @media only screen and (max-width: 768px) {
   .card-container {
     grid-template-columns: repeat(1, 1fr);
+    .card {
+      width: auto;
+    }
   }
 }
 
