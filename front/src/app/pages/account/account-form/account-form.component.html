@@ -7,10 +7,17 @@
     />
     <div
       class="validation-summary mt-5"
-      *ngIf="accountForm?.errors && accountForm.touched"
+      *ngIf="username?.errors && accountForm.touched"
     >
       <ul>
-        <li *ngIf="username!.hasError('required')">Le nom d'utilisateur</li>
+        <li *ngIf="username!.hasError('required'); else maxlengthUsername">
+          Le nom d'utilisateur est obligatoire
+        </li>
+        <ng-template #maxlengthUsername>
+          <li *ngIf="username!.hasError('maxlength')">
+            Le nom d'utilisateur est trop long
+          </li>
+        </ng-template>
       </ul>
     </div>
   </div>
@@ -18,12 +25,22 @@
     <input formControlName="email" placeholder="Adresse email" type="text" />
     <div
       class="validation-summary mt-5"
-      *ngIf="accountForm?.errors && accountForm.touched"
+      *ngIf="email?.errors && accountForm.touched"
     >
       <ul>
-        <li *ngIf="email!.hasError('required')">
+        <li *ngIf="email!.hasError('required'); else maxlengthEmail">
           L'adresse email est obligatoire
         </li>
+        <ng-template #maxlengthEmail>
+          <li *ngIf="email!.hasError('maxlength'); else emailEmail">
+            L'adresse email est trop longue
+          </li>
+        </ng-template>
+        <ng-template #emailEmail>
+          <li *ngIf="email!.hasError('email')">
+            Rentrer une adresse email valide
+          </li>
+        </ng-template>
       </ul>
     </div>
   </div>
@@ -38,6 +55,6 @@
     <div class="d-flex flex-row justify-content-center">
       <button class="btn btn-primary">Sauvegarder</button>
     </div>
-    <a class="logout">Se déconnecter</a>
+    <a class="logout" (click)="logout()">Se déconnecter</a>
   </div>
 </form>

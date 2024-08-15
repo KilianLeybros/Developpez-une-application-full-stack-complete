@@ -67,17 +67,21 @@ public class AuthService implements IAuthService {
     public void authenticate(String email, String password, HttpServletResponse response){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         if(authentication.isAuthenticated()) {
-            String token = jwtService.generateToken(email);
-            // set token to cookie header
-            ResponseCookie cookie = ResponseCookie.from("token", token)
-                    .httpOnly(true)
-                    .secure(false)
-                    .sameSite("Lax")
-                    .path("/")
-                    .maxAge(cookieExpiration)
-                    .build();
-            response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
+            addCookie(email, response);
         }
+    }
+
+    public void addCookie(String email,  HttpServletResponse response){
+        String token = jwtService.generateToken(email);
+        // set token to cookie header
+        ResponseCookie cookie = ResponseCookie.from("token", token)
+                .httpOnly(true)
+                .secure(false)
+                .sameSite("Lax")
+                .path("/")
+                .maxAge(cookieExpiration)
+                .build();
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
     }
 
     private UserDetails getAuthenticatedUser(){
