@@ -26,7 +26,7 @@ public class TopicController {
 
     @Operation(summary = "Find topics", description = "Permet de récupérer les topics")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Topics",
+            @ApiResponse(responseCode = "200", description = "Liste de topic",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = TopicResponse.class))}),
             @ApiResponse(responseCode = "401", description = "Unauthorized",
                     content = {@Content(mediaType = "application/json")}),
@@ -62,7 +62,7 @@ public class TopicController {
         return ResponseEntity.ok(topicService.subscribe(id));
     }
 
-    @Operation(summary = "Unsubscribe a topic", description = "Permet de unsubscribe un topic")
+    @Operation(summary = "Unsubscribe a topic", description = "Permet d'unsubscribe un topic")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Topic",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = TopicResponse.class))}),

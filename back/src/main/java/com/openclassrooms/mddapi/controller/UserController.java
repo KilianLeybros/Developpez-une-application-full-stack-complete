@@ -33,7 +33,7 @@ public class UserController {
 
     @Operation(summary = "Update user profile", description = "Permet de modifier les informations de l'utilisateur")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Auth",
+            @ApiResponse(responseCode = "200", description = "La mise à jour de l'utilisateur c'est éffectué avec succès",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = AuthResponse.class))}),
             @ApiResponse(responseCode = "400", description = "Body de la requête invalide",
                     content = {@Content(mediaType = "application/json")}),

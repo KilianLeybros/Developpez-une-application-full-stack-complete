@@ -27,7 +27,7 @@ public class PostController {
 
     @Operation(summary = "Find posts", description = "Permet de lister tout les posts")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Posts",
+            @ApiResponse(responseCode = "200", description = "Liste de post",
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PostResponse.class))}),
             @ApiResponse(responseCode = "401", description = "Unauthorized",
                     content = {@Content(mediaType = "application/json")}),
