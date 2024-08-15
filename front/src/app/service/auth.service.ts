@@ -68,4 +68,13 @@ export class AuthService {
       })
     );
   }
+
+  public logout(): Observable<void> {
+    return this.http.get<void>(`${this.path}/logout`).pipe(
+      tap(() => {
+        this.user$.next(null);
+        this.isLoggedin$.next(false);
+      })
+    );
+  }
 }

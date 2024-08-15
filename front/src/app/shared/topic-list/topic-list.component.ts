@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Topic } from 'src/app/interfaces/topic.interface';
 
 @Component({
@@ -8,11 +8,11 @@ import { Topic } from 'src/app/interfaces/topic.interface';
 })
 export class TopicListComponent {
   @Input() public topics!: Topic[] | null;
-  @Input() public isLoading!: boolean;
+  @Input() public isLoaded!: boolean;
+  @Input() public emptyListMessage!: string;
   @Output() public action: EventEmitter<number> = new EventEmitter<number>();
 
   public updateSubscrition(id: number) {
-    console.log(id);
     this.action.emit(id);
   }
 }

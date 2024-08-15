@@ -41,7 +41,6 @@ export class TopicService {
   }
 
   public subscribe(id: number) {
-    console.log('a');
     return this.http.post<Topic>(`${this.apiPath}/${id}/subscribe`, null).pipe(
       tap((topic: Topic) => {
         const topics = this.topics$.value;

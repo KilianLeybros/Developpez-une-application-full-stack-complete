@@ -20,6 +20,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+
 
 @Configuration
 @EnableWebSecurity
@@ -35,8 +38,14 @@ public class SpringSecurityConfig {
         return http.csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/api/auth/**").permitAll();
-                    auth.requestMatchers("api/**").authenticated();
+                    auth.requestMatchers("/api/**").authenticated();
                 })
+                .logout(logout -> {
+                    logout.logoutUrl("/api/auth/logout")
+                            .addLogoutHandler(new CookieClearingLogoutHandler("token"))
+                            .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)).permitAll();
+                })
+
                 //Configuration de exception handling dans le cas ou aucun utilisateur est connecté, renvoie 401 au lieu de 403
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

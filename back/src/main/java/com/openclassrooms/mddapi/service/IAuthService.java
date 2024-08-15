@@ -12,6 +12,7 @@ public interface IAuthService {
 
     void authenticate(String email, String password, HttpServletResponse response);
 
+    void addCookie(String email, HttpServletResponse response);
     User getCurrentUser();
 
 }

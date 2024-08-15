@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { Topic } from 'src/app/interfaces/topic.interface';
 import { TopicService } from 'src/app/service/topic.service';
 
@@ -11,6 +11,10 @@ import { TopicService } from 'src/app/service/topic.service';
 export class TopicComponent implements OnInit {
   constructor(private topicService: TopicService) {}
 
+  public emptyListMessage = 'Aucun théme pour le moment...';
+
+  public isLoaded: boolean = false;
+
   public topics$: Observable<Topic[] | null> =
     this.topicService.topics$.asObservable();
 
@@ -20,6 +24,8 @@ export class TopicComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.topicService.fetchUnsubscribedTopics().subscribe();
+    this.topicService.fetchUnsubscribedTopics().subscribe(() => {
+      this.isLoaded = true;
+    });
   }
 }
