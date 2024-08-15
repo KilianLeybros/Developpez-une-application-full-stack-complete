@@ -15,11 +15,7 @@ export class TopicService {
 
   constructor(private http: HttpClient) {}
 
-  public getSubscribedTopics() {
-    return this.http.get<SubscribedTopic[]>(`${this.apiPath}/subscribed`);
-  }
-
-  private fetchTopics() {
+  public fetchTopics() {
     return this.http.get<Topic[]>(`${this.apiPath}`);
   }
 

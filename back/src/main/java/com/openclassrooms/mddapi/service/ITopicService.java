@@ -10,7 +10,7 @@ public interface ITopicService {
     //TopicSelectListResponse getTopic(Long id);
     List<TopicResponse> findAllTopics();
 
-    List<SubscribedTopic> findSubscribedTopics();
+    //List<SubscribedTopic> findSubscribedTopics();
 
     TopicResponse subscribe(Long id);
 

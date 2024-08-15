@@ -19,13 +19,13 @@ public class TopicMapper {
         )).collect(Collectors.toList());
     }
 
-    public static List<SubscribedTopic> toListSubscribedTopic(List<Topic> topics){
+    /*public static List<SubscribedTopic> toListSubscribedTopic(List<Topic> topics){
         return topics.stream().map(t -> new SubscribedTopic(
                 t.getId(),
                 t.getTitle(),
                 t.getDescription()
         )).collect(Collectors.toList());
-    }
+    }*/
 
     public static TopicResponse toTopicResponse(Topic topic, Boolean subscribed){
         return new TopicResponse(
