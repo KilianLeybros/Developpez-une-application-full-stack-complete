@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.service.impl;
 
-import com.openclassrooms.mddapi.data.dto.topic.SubscribedTopic;
 import com.openclassrooms.mddapi.data.dto.topic.TopicResponse;
 import com.openclassrooms.mddapi.data.mapper.TopicMapper;
 import com.openclassrooms.mddapi.data.model.Topic;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class TopicService implements ITopicService {
@@ -30,11 +28,6 @@ public class TopicService implements ITopicService {
         User user = authService.getCurrentUser();
         return TopicMapper.toListTopicResponse(topicRepository.findAll(), user);
     }
-
-   /* public List<SubscribedTopic> findSubscribedTopics(){
-        User user = authService.getCurrentUser();
-        return TopicMapper.toListSubscribedTopic(topicRepository.findByUsers(Set.of(user)));
-    }*/
 
     @Transactional
     public TopicResponse subscribe(Long id){

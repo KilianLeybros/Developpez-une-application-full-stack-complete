@@ -36,17 +36,6 @@ public class TopicController {
         return ResponseEntity.ok(topicService.findAllTopics());
     }
 
-   /* @Operation(summary = "Find subscribed topics", description = "Permet de récupérer les topics suivis")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Rental",
-                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Topic.class))}),
-            @ApiResponse(responseCode = "401", description = "Unauthorized",
-                    content = {@Content(mediaType = "application/json")}),
-    })
-    @GetMapping("subscribed")
-    public ResponseEntity<List<SubscribedTopic>> getSubscribed(){
-        return ResponseEntity.ok(topicService.findSubscribedTopics());
-    }*/
 
     @Operation(summary = "Subscribe a topic", description = "Permet de subscribe un topic")
     @ApiResponses(value = {

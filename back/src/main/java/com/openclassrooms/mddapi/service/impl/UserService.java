@@ -7,6 +7,8 @@ import com.openclassrooms.mddapi.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class UserService implements IUserService {
 
@@ -19,7 +21,8 @@ public class UserService implements IUserService {
     public User updateUserProfile(UserProfileInput userInfo){
         User user = authService.getCurrentUser();
         user.setEmail(userInfo.email())
-            .setUsername(userInfo.username());
+            .setUsername(userInfo.username())
+            .setUpdatedAt(LocalDateTime.now());
         return userRepository.save(user);
     }
 }

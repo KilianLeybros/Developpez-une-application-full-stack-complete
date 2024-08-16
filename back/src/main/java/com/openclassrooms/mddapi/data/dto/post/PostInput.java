@@ -12,7 +12,6 @@ public record PostInput(
         @NotNull(message = "Le titre est obligatoire")
         String title,
 
-        @Length(max = 255, message = "Description trop longue, pas plus de 255 caractères")
         @NotBlank(message = "La description est obligatoire")
         @NotNull(message = "La description est obligatoire")
         String description) {

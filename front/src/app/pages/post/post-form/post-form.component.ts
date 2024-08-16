@@ -21,7 +21,7 @@ export class PostFormComponent implements OnInit {
     {
       topicId: ['', [Validators.required, Validators.min(1)]],
       title: ['', [Validators.required, Validators.maxLength(100)]],
-      description: ['', [Validators.required, Validators.maxLength(255)]],
+      description: ['', [Validators.required]],
     },
     { updateOn: 'submit' }
   );
