@@ -7,6 +7,6 @@ import { Post } from 'src/app/interfaces/post.interface';
   styleUrl: './post-list.component.scss',
 })
 export class PostListComponent {
-  @Input() public posts: Post[] | null = null;
+  @Input() public posts!: Post[] | null;
   @Input() public isLoading!: boolean;
 }
