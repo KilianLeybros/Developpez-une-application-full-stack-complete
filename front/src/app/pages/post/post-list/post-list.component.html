@@ -1,7 +1,7 @@
 <div class="card-container" [attr.loading]="isLoading">
   @if(isLoading){
   <app-loader></app-loader>
-  } @if(posts){ @for (post of posts; track post.id) {
+  } @if(posts && posts.length > 0){ @for (post of posts; track post.id) {
   <div class="card" [routerLink]="[post.id]">
     <div class="card-header">
       <h3>{{ post.title }}</h3>
@@ -16,7 +16,7 @@
       </p>
     </div>
   </div>
-  } } @else if(!posts && !isLoading) {
-  <p>Aucun article pour le moment..</p>
+  } } @else if((!posts || posts.length == 0) && !isLoading) {
+  <p class="empty-message">Aucun article pour le moment..</p>
   }
 </div>

@@ -8,13 +8,11 @@ import { PostComponent } from './pages/post/post.component';
 import { loggedinGuard } from './guards/loggedin.guard';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { PostDetailsComponent } from './pages/post/post-details/post-details.component';
-import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
 import { TopicComponent } from './pages/topic/topic.component';
 import { AccountComponent } from './pages/account/account.component';
 
-// consider a guard combined with canLoad / canActivate route option
-// to manage unauthenticated user to access private routes
 const routes: Routes = [
   {
     path: '',

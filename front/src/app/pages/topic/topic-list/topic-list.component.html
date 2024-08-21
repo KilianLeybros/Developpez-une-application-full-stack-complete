@@ -1,6 +1,6 @@
+@if(isLoaded){
 <div class="card-container">
-  @if(isLoaded){ @if(topics && topics.length > 0){ @for (topic of topics; track
-  topic.id) {
+  @if(topics && topics.length > 0){ @for (topic of topics; track topic.id) {
   <div class="card">
     <div class="card-header">
       <h3>{{ topic.title }}</h3>
@@ -16,7 +16,10 @@
       </button>
     </div>
   </div>
-  } } @else {
-  <p>{{ emptyListMessage }}</p>
   } }
 </div>
+@if(!topics || topics.length == 0){
+<p class="empty-message">
+  {{ emptyListMessage }}
+</p>
+} }

@@ -1,53 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { AuthTitleComponent } from './pages/auth/auth-title/auth-title.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PostComponent } from './pages/post/post.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
-import { PostListComponent } from './pages/post/post-list/post-list.component';
-import { LoaderComponent } from './shared/loader/loader.component';
-import { PostDetailsComponent } from './pages/post/post-details/post-details.component';
-import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { PostFormComponent } from './pages/post/post-form/post-form.component';
-import { TopicComponent } from './pages/topic/topic.component';
-import { TopicListComponent } from './shared/topic-list/topic-list.component';
-import { AccountComponent } from './pages/account/account.component';
-import { AccountFormComponent } from './pages/account/account-form/account-form.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AccountModule } from './pages/account/account.module';
+import { AuthModule } from './pages/auth/auth.module';
+import { PostModule } from './pages/post/post.module';
+import { TopicModule } from './pages/topic/topic.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent,
     HeaderComponent,
-    LoaderComponent,
-    AuthTitleComponent,
-    PostComponent,
-    PostListComponent,
-    PostDetailsComponent,
     NotFoundComponent,
-    PostFormComponent,
-    TopicComponent,
-    TopicListComponent,
-    AccountComponent,
-    AccountFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatIconModule,
-    MatProgressBarModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    AccountModule,
+    MatIconModule,
+    AuthModule,
+    PostModule,
+    TopicModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
