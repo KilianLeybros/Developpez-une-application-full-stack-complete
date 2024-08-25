@@ -1,0 +1,130 @@
+nav {
+  height: 98px;
+  border-bottom: 1px solid black;
+  padding: 6px 20px 6px 20px;
+  .brand {
+    width: 140px;
+    margin-right: auto;
+  }
+}
+
+.toggle-btn {
+  mat-icon {
+    font-size: 35px;
+    height: 35px;
+    width: 35px;
+  }
+}
+
+.profil {
+  mat-icon {
+    color: var(--gray);
+    font-size: 60px;
+    width: auto;
+    height: auto;
+  }
+  margin: 0 10px 0 10px;
+  border-radius: 100%;
+  height: 60px;
+  width: 60px;
+}
+
+.nav-link {
+  ul {
+    display: flex;
+    margin: 0 10px 0 10px;
+    li {
+      &.active {
+        color: var(--primary);
+      }
+      cursor: pointer;
+      padding: 10px 20px;
+
+      font-size: 20px;
+      &:hover {
+        color: var(--darker2);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .link-container {
+    .nav-link {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .toggle-btn {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-link {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-not-loggedin {
+    display: none;
+  }
+}
+aside {
+  display: none;
+  z-index: 1;
+}
+aside[aria-expanded="true"] {
+  display: block;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  top: 0px;
+  left: 0px;
+  .nav-link.mobile {
+    padding: 20px 10px 20px 10px;
+    height: 100%;
+    width: 275px;
+    animation-name: togglein;
+    animation-duration: 0.2s;
+    float: right;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    ul {
+      flex-direction: column;
+    }
+  }
+}
+
+@keyframes togglein {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 275px;
+  }
+}
+
+@keyframes toggleout {
+  from {
+    width: 275px;
+  }
+  to {
+    width: 0px;
+  }
+}
+
+.user-profile {
+  &.active {
+    background-image: url("../../assets/profile_active.png");
+  }
+  background-image: url("../../assets/profile.png");
+  width: 48px;
+  height: 48px;
+  background-repeat: no-repeat;
+}

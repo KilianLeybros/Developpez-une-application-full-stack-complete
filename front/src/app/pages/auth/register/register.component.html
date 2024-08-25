@@ -1,0 +1,88 @@
+<div class="backward">
+  <a routerLink="" class="back">
+    <mat-icon>arrow_back</mat-icon>
+  </a>
+</div>
+<app-auth-title content="Inscription"></app-auth-title>
+<div class="d-flex justify-content-center mt-30">
+  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="d-flex flex-column form-group">
+      <label>Nom d'utilisateur</label>
+      <input formControlName="username" type="text" />
+      <div
+        class="validation-summary"
+        *ngIf="username?.errors && registerForm.touched"
+      >
+        <ul>
+          <li *ngIf="username!.hasError('required'); else maxlengthUsername">
+            Le nom d'utilisateur est obligatoire
+          </li>
+          <ng-template #maxlengthUsername>
+            <li *ngIf="username!.hasError('maxlength')">
+              Le nom d'utilisateur est trop long
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex flex-column form-group">
+      <label>Email</label>
+      <input formControlName="email" type="text" />
+      <div
+        class="validation-summary"
+        *ngIf="email?.errors && registerForm.touched"
+      >
+        <ul>
+          <li *ngIf="email!.hasError('required'); else maxlengthEmail">
+            L'adresse email est obligatoire
+          </li>
+          <ng-template #maxlengthEmail>
+            <li *ngIf="email!.hasError('maxlength'); else emailEmail">
+              L'adresse email est trop longue
+            </li>
+          </ng-template>
+          <ng-template #emailEmail>
+            <li *ngIf="email!.hasError('email')">
+              Rentrer une adresse email valide
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex flex-column form-group">
+      <label>Mot de passe</label>
+      <input formControlName="password" type="password" />
+      <div
+        class="validation-summary"
+        *ngIf="password?.errors && registerForm.touched"
+      >
+        <ul>
+          <li *ngIf="password!.hasError('required'); else minlengthPassword">
+            Le mot de passe est obligatoire
+          </li>
+          <ng-template #minlengthPassword>
+            <li *ngIf="password!.hasError('minlength'); else patternPassword">
+              Le mot de passe doit faire au minimum 8 caractères
+            </li>
+          </ng-template>
+          <ng-template #patternPassword>
+            <li *ngIf="password!.hasError('pattern')">
+              Le mot de passe doit contenir au moins une minuscule, une
+              majuscule, un chiffre et un caractère spécial
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+    <div class="validation-summary">
+      <ul>
+        <li *ngIf="error">
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-center actions">
+      <button class="btn btn-primary">S'inscrire</button>
+    </div>
+  </form>
+</div>

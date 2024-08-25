@@ -1,0 +1,31 @@
+.post-info {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  margin-bottom: 20px;
+  span {
+    width: 50%;
+  }
+}
+
+p {
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 5;
+  box-orient: vertical;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card-container {
+  column-gap: 50px;
+  row-gap: 30px;
+}
+
+.empty-message {
+  font-weight: 500;
+}

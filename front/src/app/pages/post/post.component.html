@@ -1,0 +1,18 @@
+<div class="d-flex flex-column p-30">
+  <div class="d-flex flex-row justify-content-between mb-30">
+    <a class="btn btn-primary" routerLink="new">Créer un article</a>
+    <a class="order-btn d-flex align-items-center" (click)="sort()"
+      >Trier par
+      <mat-icon>{{
+        this.direction == "ASC" ? "arrow_downward" : "arrow_upward"
+      }}</mat-icon></a
+    >
+  </div>
+  @if(isLoading){
+  <app-loader></app-loader>
+  }
+  <app-post-list
+    [isLoading]="isLoading"
+    [posts]="posts$ | async"
+  ></app-post-list>
+</div>

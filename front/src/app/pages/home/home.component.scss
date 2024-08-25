@@ -1,7 +1,30 @@
-.center {
-  height: 100vh;
+.btn-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: space-evenly;
+  a {
+    width: 150px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .btn-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  .home-page-container {
+    margin-top: 150px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .btn-container {
+    flex-direction: row;
+  }
+  .home-page-container {
+    margin-top: 200px;
+  }
+}
+
+img {
+  max-width: 55%;
+  margin: auto;
 }

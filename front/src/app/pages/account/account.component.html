@@ -1,0 +1,22 @@
+<div class="d-flex flex-column px-30 py-15">
+  <div class="d-flex justify-content-center mt-15">
+    <h2>Profil utilisateur</h2>
+  </div>
+  <div class="d-flex flex-column justify-content-center">
+    <app-account-form
+      (logoutClicked)="logout()"
+      [user]="user$ | async"
+    ></app-account-form>
+    <hr class="my-15" />
+    <div class="d-flex justify-content-center mb-30">
+      <h2>Abonnement</h2>
+    </div>
+    <app-topic-list
+      (action)="unsubscribe($event)"
+      [isLoaded]="isLoaded"
+      [topics]="topics$ | async"
+      [emptyListMessage]="emptyListMessage"
+      [canUnsubscribe]="true"
+    ></app-topic-list>
+  </div>
+</div>

@@ -1,4 +1,318 @@
-/* You can add global styles to this file, and also import other style files */
+//Material
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@use "@angular/material" as mat;
+
+@include mat.core();
+$my-color: (
+  50: #eeeafd,
+  100: #d6cbf9,
+  200: #baa8f6,
+  300: #9e85f2,
+  400: #8a6aef,
+  500: #7550ec,
+  600: #6d49ea,
+  700: #6240e7,
+  800: #5837e4,
+  900: #4527df,
+  A100: #ffffff,
+  A200: #ebe8ff,
+  A400: #c0b5ff,
+  A700: #aa9cff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$primary: mat.define-palette($my-color);
+$accent: mat.define-palette(mat.$deep-purple-palette);
+$warn: mat.define-palette(mat.$light-green-palette);
+
+$light: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($light);
+
+//
+
+:root {
+  --primary: #7550ec;
+  --darker: #5f33e9;
+  --darker2: #4016c8;
+  --gray: #d9d9d9;
+  --gray2: #eeeeee;
+  --light-gray: #f5f5f5;
+  --small: 800px;
+  --error: rgb(202, 13, 13);
+}
+
+* {
+  font-family: "Roboto", "sans-serif";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p,
+label {
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1200px;
+  display: block;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.ml-30 {
+  margin-left: 30px;
+}
+
+.my-15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.my-25 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.px-30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.py-15 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.pb-30 {
+  padding-bottom: 30px;
+}
+
+.p-30 {
+  padding: 30px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+.flex-fill {
+  flex: 1;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.outline-btn {
+  padding: 8px 25px 8px 25px;
+  border: 1px solid black;
+  &:hover {
+    border-color: var(--primary);
+  }
+}
+
+.btn {
+  padding: 7px 13px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  border: none;
+  background-color: var(--primary);
+  color: white;
+  &:hover {
+    background-color: var(--darker);
+  }
+}
+
+.validation-summary {
+  color: var(--error);
+  font-size: 13px;
+}
+
+.backward {
+  position: absolute;
+  left: 30px;
+  margin-top: 15px;
+}
+
+a.back {
+  cursor: pointer;
+  mat-icon {
+    height: 30px;
+    width: 30px;
+    font-size: 30px;
+  }
+}
+
+.form-group {
+  &.purple {
+    input,
+    textarea,
+    select {
+      border-color: var(--darker2);
+      outline-color: var(--darker2);
+    }
+  }
+  max-width: 500px;
+  label {
+    font-weight: 500;
+  }
+  input {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 8px;
+  }
+  textarea {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 8px;
+    resize: none;
+  }
+  select {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 8px;
+  }
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 7px;
+  row-gap: 12px;
+  position: relative;
+  .card {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    width: 545px;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    padding: 13px 17px;
+    .card-header {
+      margin-bottom: 25px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+    .card {
+      width: auto;
+    }
+  }
+}
+
+app-loader {
+  position: absolute;
+}
+
+div[loading="true"] {
+  opacity: 0.5;
+  .card {
+    height: 197px;
+  }
+}

@@ -1,0 +1,74 @@
+<div class="d-flex flex-column px-30 py-15">
+  <form [formGroup]="postForm" (ngSubmit)="submit()">
+    <div class="mb-30 text-center">
+      <h2>Créer un nouvel article</h2>
+    </div>
+    <div class="d-flex flex-column form-group purple">
+      <select formControlName="topicId">
+        <option value="" disabled selected>Sélectionner un thème</option>
+        @for(topic of topicList$ | async; track topic.id){
+        <option [value]="topic.id">{{ topic.title }}</option>
+        }
+      </select>
+      <div
+        class="validation-summary mt-5"
+        *ngIf="topic?.errors && postForm.touched"
+      >
+        <ul>
+          <li *ngIf="topic!.hasError('required'); else minTopic">
+            Le théme est obligatoire
+          </li>
+          <ng-template #minTopic>
+            <li *ngIf="topic!.hasError('min')">Le théme est obligatoire</li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex flex-column form-group purple">
+      <input
+        formControlName="title"
+        placeholder="Titre de l'article"
+        type="text"
+      />
+      <div
+        class="validation-summary mt-5"
+        *ngIf="title?.errors && postForm.touched"
+      >
+        <ul>
+          <li *ngIf="title!.hasError('required')">Le titre est obligatoire</li>
+
+          <li *ngIf="title!.hasError('maxlength')">
+            Titre trop long, pas plus de 100 caractères
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="d-flex flex-column form-group purple">
+      <textarea
+        formControlName="description"
+        rows="15"
+        placeholder="Contenu de l'aticle"
+      ></textarea>
+      <div
+        class="validation-summary mt-5"
+        *ngIf="description?.errors && postForm.touched"
+      >
+        <ul>
+          <li *ngIf="description!.hasError('required')">
+            La description est obligatoire
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="validation-summary mt-15" *ngIf="error">
+      <ul>
+        <li>
+          {{ error }}
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-center mt-30">
+      <button class="btn btn-primary">Créer</button>
+    </div>
+  </form>
+</div>

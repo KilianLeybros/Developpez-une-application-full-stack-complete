@@ -1,0 +1,49 @@
+@if(!ishomePage){
+<nav
+  [class.nav-not-loggedin]="!isLoggedin"
+  class="d-flex flex-row align-items-center"
+>
+  <a routerLink="" class="brand">
+    <img src="/assets/logo_p6.png" alt="logo" />
+  </a>
+  @if(isLoggedin){
+  <div class="link-container">
+    <div class="nav-link">
+      <ul>
+        <li
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="postsRouteOptions"
+          [queryParams]="{ direction: 'ASC' }"
+        >
+          Articles
+        </li>
+        <li routerLink="/topics" routerLinkActive="active">Thèmes</li>
+      </ul>
+      <a class="user-profile" routerLink="/account" routerLinkActive="active">
+      </a>
+    </div>
+  </div>
+  <a (click)="menuToggled = !menuToggled" class="toggle-btn"
+    ><mat-icon>menu</mat-icon></a
+  >
+  <aside [attr.aria-expanded]="menuToggled">
+    <div class="nav-link mobile">
+      <ul>
+        <li
+          routerLink="/posts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="postsRouteOptions"
+          [queryParams]="{ direction: 'ASC' }"
+        >
+          Articles
+        </li>
+        <li routerLink="/topics" routerLinkActive="active">Thèmes</li>
+      </ul>
+      <a class="user-profile" routerLink="/account" routerLinkActive="active">
+      </a>
+    </div>
+  </aside>
+  }
+</nav>
+}
