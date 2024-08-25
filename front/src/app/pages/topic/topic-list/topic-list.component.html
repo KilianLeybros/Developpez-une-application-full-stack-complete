@@ -10,10 +10,19 @@
         {{ topic.description }}
       </p>
     </div>
-    <div class="d-flex justify-content-center mt-15">
+
+    <div class="d-flex justify-content-center mt-15 subscribe-container">
+      @if(canUnsubscribe){
       <button class="btn btn-primary" (click)="updateSubscrition(topic.id)">
         {{ topic.isSubscribed ? "Se désabonner" : "S'abonner" }}
       </button>
+      } @else { @if(!topic.isSubscribed){
+      <button class="btn btn-primary" (click)="updateSubscrition(topic.id)">
+        S'abonner
+      </button>
+      } @else {
+      <span class="followed">Suivi<mat-icon>done_outline</mat-icon></span>
+      } }
     </div>
   </div>
   } }

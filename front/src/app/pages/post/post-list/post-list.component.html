@@ -1,7 +1,8 @@
 <div class="card-container" [attr.loading]="isLoading">
   @if(isLoading){
   <app-loader></app-loader>
-  } @if(posts && posts.length > 0){ @for (post of posts; track post.id) {
+  <div *ngFor="let number of [0, 1, 2, 3]" class="card"></div>
+  }@else { @if(posts && posts.length > 0){ @for (post of posts; track post.id) {
   <div class="card" [routerLink]="[post.id]">
     <div class="card-header">
       <h3>{{ post.title }}</h3>
@@ -16,7 +17,7 @@
       </p>
     </div>
   </div>
-  } } @else if((!posts || posts.length == 0) && !isLoading) {
+  } } @else {
   <p class="empty-message">Aucun article pour le moment..</p>
-  }
+  } }
 </div>

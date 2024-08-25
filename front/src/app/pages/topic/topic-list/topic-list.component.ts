@@ -10,6 +10,7 @@ export class TopicListComponent {
   @Input() public topics!: Topic[] | null;
   @Input() public isLoaded!: boolean;
   @Input() public emptyListMessage!: string;
+  @Input() public canUnsubscribe: boolean = false;
   @Output() public action: EventEmitter<number> = new EventEmitter<number>();
 
   public updateSubscrition(id: number) {

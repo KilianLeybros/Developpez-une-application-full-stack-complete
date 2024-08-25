@@ -13,3 +13,21 @@
   text-align: center;
   font-weight: 500;
 }
+
+.subscribe-container {
+  height: 32px;
+}
+
+.followed {
+  font-weight: 500;
+  color: var(--primary);
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+  mat-icon {
+    margin-left: 4px;
+    font-size: 14px;
+    height: 14px;
+    width: 14px;
+  }
+}

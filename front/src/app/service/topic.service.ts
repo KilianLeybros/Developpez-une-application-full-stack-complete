@@ -27,6 +27,14 @@ export class TopicService {
     );
   }
 
+  public getAll() {
+    return this.fetchTopics().pipe(
+      tap((topics: Topic[]) => {
+        this.topics$.next(topics);
+      })
+    );
+  }
+
   public fetchUnsubscribedTopics() {
     return this.fetchTopics().pipe(
       tap((topics: Topic[]) => {
@@ -39,8 +47,12 @@ export class TopicService {
   public subscribe(id: number) {
     return this.http.post<Topic>(`${this.apiPath}/${id}/subscribe`, null).pipe(
       tap((topic: Topic) => {
-        const topics = this.topics$.value;
-        this.topics$.next(topics!.filter((t) => t.id !== topic.id));
+        const topics: Topic[] | null = this.topics$.value;
+        this.topics$.next(
+          topics!.map((t) =>
+            t.id === topic.id ? { ...t, isSubscribed: true } : t
+          )
+        );
       })
     );
   }

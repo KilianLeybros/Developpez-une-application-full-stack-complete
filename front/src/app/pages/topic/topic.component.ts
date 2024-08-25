@@ -19,12 +19,11 @@ export class TopicComponent implements OnInit {
     this.topicService.topics$.asObservable();
 
   subscribe(id: number) {
-    console.log(id);
     this.topicService.subscribe(id).subscribe();
   }
 
   ngOnInit(): void {
-    this.topicService.fetchUnsubscribedTopics().subscribe(() => {
+    this.topicService.getAll().subscribe(() => {
       this.isLoaded = true;
     });
   }
