@@ -13,3 +13,13 @@ form {
     color: #860d0d;
   }
 }
+
+.password-btn {
+  margin-left: 5px;
+  padding: 3px 4px 3px 4px;
+  mat-icon {
+    font-size: 13px;
+    height: 13px;
+    width: 13px;
+  }
+}

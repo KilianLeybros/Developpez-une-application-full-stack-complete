@@ -1,7 +1,7 @@
 <app-header [isLoggedin]="isLoggedin$ | async"></app-header>
 @if (isChildRoute) {
 <div class="d-flex mt-15 ml-30">
-  <a routerLink="" class="back">
+  <a [routerLink]="previousRoute" class="back">
     <mat-icon>arrow_back</mat-icon>
   </a>
 </div>
