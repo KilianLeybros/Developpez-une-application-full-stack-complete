@@ -22,7 +22,21 @@
     </div>
   </div>
   <div class="d-flex flex-column form-group purple">
-    <input formControlName="email" placeholder="Adresse email" type="text" />
+    <div class="d-flex">
+      <input
+        class="flex-fill"
+        formControlName="email"
+        placeholder="Adresse email"
+        type="text"
+      />
+      <button
+        title="Modifier le mot de passe"
+        class="btn btn-primary password-btn"
+        routerLink="password"
+      >
+        <mat-icon>lock</mat-icon>**
+      </button>
+    </div>
     <div
       class="validation-summary mt-5"
       *ngIf="email?.errors && accountForm.touched"

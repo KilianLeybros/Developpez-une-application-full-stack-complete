@@ -13,6 +13,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authService.isLoggedin$.asObservable();
   public isChildRoute?: boolean;
 
+  public previousRoute?: string;
+
   private destroyed$ = new Subject();
 
   constructor(
@@ -30,7 +32,10 @@ export class AppComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((event: NavigationEnd) => {
-        this.isChildRoute = event.url.split('/').length > 2 ? true : false;
+        const splitedUrl = event.url.split('/');
+        const routeLength = splitedUrl.length;
+        this.previousRoute = splitedUrl[routeLength - 2];
+        this.isChildRoute = routeLength > 2 ? true : false;
       });
   }
 

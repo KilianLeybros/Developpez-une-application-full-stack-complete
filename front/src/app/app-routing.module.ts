@@ -12,6 +12,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostFormComponent } from './pages/post/post-form/post-form.component';
 import { TopicComponent } from './pages/topic/topic.component';
 import { AccountComponent } from './pages/account/account.component';
+import { PasswordFormComponent } from './pages/account/password-form/password-form.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
     path: 'account',
     canActivate: [dataUserGuard, authGuard],
     component: AccountComponent,
+  },
+  {
+    path: 'account/password',
+    canActivate: [dataUserGuard, authGuard],
+    component: PasswordFormComponent,
   },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/' },

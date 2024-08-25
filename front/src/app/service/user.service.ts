@@ -21,4 +21,16 @@ export class UserService {
       })
     );
   }
+
+  public updatePassword(userPassword: {
+    currentPassword: string;
+    newPassword: string;
+    confirm: string;
+  }): Observable<User> {
+    return this.http.patch<User>(`${this.path}/password`, userPassword).pipe(
+      tap((user: User) => {
+        this.authService.user$.next(user);
+      })
+    );
+  }
 }
