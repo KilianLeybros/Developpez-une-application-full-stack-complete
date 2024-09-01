@@ -1,0 +1,51 @@
+name: mdd-front
+services:
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - type: bind
+        source: ./front
+        target: /app
+      - type: volume
+        target: /app/node_modules
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/mdd
+      SPRING_DATASOURCE_USERNAME: kilian
+      SPRING_DATASOURCE_PASSWORD: "123"
+  db:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mdd
+      - MYSQL_USER=kilian
+      - MYSQL_PASSWORD=123
+    ports:
+      - 3306:3306
+    volumes:
+      - dbmdd:/var/lib/mysql
+      - ./back/src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+  reverse-proxy:
+    build:
+      context: ./reverse-proxy
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - front
+      - back
+      - db
+volumes:
+  dbmdd:

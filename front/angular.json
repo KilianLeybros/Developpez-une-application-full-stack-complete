@@ -4,7 +4,8 @@
   "cli": {
     "cache": {
       "enabled": false
-    }
+    },
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -66,9 +67,6 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "options": {
-            "proxyConfig": "src/proxy.conf.json"
-          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
