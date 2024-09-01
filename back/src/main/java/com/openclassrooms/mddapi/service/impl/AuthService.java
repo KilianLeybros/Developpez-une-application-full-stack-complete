@@ -75,7 +75,7 @@ public class AuthService implements IAuthService {
         // set token to cookie header
         ResponseCookie cookie = ResponseCookie.from("token", token)
                 .httpOnly(true)
-                .secure(false)
+                .secure(true)
                 .sameSite("Lax")
                 .path("/")
                 .maxAge(cookieExpiration)
